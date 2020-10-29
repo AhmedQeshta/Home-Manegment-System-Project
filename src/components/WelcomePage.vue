@@ -86,5 +86,131 @@ export default {
 </script>
 
 <style scoped>
+  .content-body {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: reverse;
+    -ms-flex-direction: row-reverse;
+    flex-direction: row-reverse;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    text-align: center;
+    width: 80%;
+    margin: 90px auto;
+  }
+
+  .content-body :nth-child(1) {
+    -ms-flex-preferred-size: 35%;
+    flex-basis: 35%;
+  }
+
+  .content-body :nth-child(2) {
+    -ms-flex-preferred-size: 50%;
+    flex-basis: 50%;
+  }
+
+  .content-body .svg-background {
+    width: 100%;
+    height: 100%;
+  }
+
+  .content-body h2 {
+    text-align: start;
+    padding: 5px 50px;
+    font-size: 50px;
+    color: white;
+  }
+
+  .content-body p {
+    text-align: start;
+    padding: 5px 50px;
+    font-size: 15px;
+    color: white;
+    margin-bottom: 30px;
+  }
+
+  .content-body a {
+    background: #10AC78;
+    padding: 6px 20px;
+    padding-bottom: 7px;
+    border-radius: 30px;
+    text-transform: uppercase;
+    -webkit-transition: ease-in-out 0.25s;
+    transition: ease-in-out 0.25s;
+  }
+
+  .content-body a:hover {
+    color: #10AC78;
+    background: white;
+  }
+
+
+  @media only screen and (max-width: 800px) {
+
+    .content-body {
+      display: -webkit-box;
+      display: -ms-flexbox;
+      display: flex;
+      -webkit-box-orient: vertical;
+      -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+      flex-direction: column;
+      -webkit-box-pack: center;
+      -ms-flex-pack: center;
+      justify-content: center;
+      -webkit-box-align: center;
+      -ms-flex-align: center;
+      align-items: center;
+      text-align: center;
+      width: 100%;
+      margin: 0px;
+    }
+    .content-body :nth-child(1) {
+      -ms-flex-preferred-size: 100%;
+      flex-basis: 100%;
+    }
+    .content-body :nth-child(2) {
+      -ms-flex-preferred-size: 100%;
+      flex-basis: 100%;
+    }
+    .content-body .svg-background {
+      width: 300px;
+      height: 300px;
+    }
+    .content-body h2 {
+      text-align: center;
+      margin-top: 25px;
+      padding: 5px 50px;
+      font-size: 25px;
+      color: white;
+    }
+    .content-body p {
+      text-align: center;
+      padding: 5px 70px;
+      font-size: 13px;
+      color: white;
+      margin-bottom: 50px;
+    }
+    .content-body a {
+      background: #10AC78;
+      padding: 6px 20px;
+      padding-bottom: 7px;
+      border-radius: 30px;
+      text-transform: uppercase;
+      -webkit-transition: ease-in-out 0.25s;
+      transition: ease-in-out 0.25s;
+    }
+    .content-body a:hover {
+      color: #10AC78;
+      background: white;
+    }
+  }
+
 
 </style>
