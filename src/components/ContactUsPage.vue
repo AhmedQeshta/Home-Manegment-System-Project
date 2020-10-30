@@ -3,30 +3,42 @@
     <div class="content-body">
       <div>
         <h2>Contact Us</h2>
-
-        <div v-if="errors.length">
-
-          <ul>
-            <li class="error" v-for="error in errors" v-bind:key="error">{{ error }}</li>
-          </ul>
-        </div>
-
         <form action="#" @submit.prevent="checkForm">
           <div class="Group1">
             <div class="input-group ">
               <label  for="name">Name</label>
-              <input @keyup="checkName" v-model="name" type="text" placeholder="Enter Your Name" name="name" id="name" class="name">
+              <input  v-model.trim="$v.name.$model" :class="{ 'inputError':$v.name.$error ,'inputSuccess':!$v.name.$invalid }" type="text" placeholder="Enter Your Name" name="name" id="name">
+              <div >
+                <span class="ErrorText" v-if="!$v.name.minLength"> Name must have at least {{$v.name.$params.minLength.min}} letters</span>
+<!--                <span class="ErrorText" v-if="!$v.name.required"> Name is required </span>-->
+                <span class="ErrorText" v-if="!$v.name.maxLength"> Name must have at most {{$v.name.$params.maxLength.min}} letters</span>
+              </div>
             </div>
             <div class="input-group">
               <label for="email">E-Mail</label>
-              <input @keyup="checkEmail" v-model="email" type="email" placeholder="Enter Your E-Mail" name="email" id="email" class="email">
+              <input  v-model.trim="$v.email.$model" type="email" placeholder="Enter Your E-Mail" name="email" id="email" :class="{ 'inputError':$v.email.$error ,'inputSuccess':!$v.email.$invalid }">
+              <div >
+<!--                <span class="ErrorText" v-if="!$v.email.required"> email is required </span>-->
+                <span class="ErrorText" v-if="!$v.email.minLength"> email must have at least {{$v.email.$params.minLength.min}} letters</span>
+                <span class="ErrorText" v-if="!$v.email.maxLength"> email must have at most {{$v.email.$params.maxLength.min}} letters</span>
+              </div>
             </div>
           </div>
           <div class="Group2">
             <div class="input-group">
               <label for="contactsMessage">Message</label>
-              <textarea @keyup="checkTextArea" v-model="contactsMessage" name="contactsMessage" id="contactsMessage" cols="35" rows="9" placeholder="Enter Your Message ..."></textarea>
+              <textarea :class="{ 'inputError':$v.contactsMessage.$error ,'inputSuccess':!$v.contactsMessage.$invalid }"  v-model.trim="$v.contactsMessage.$model"  name="contactsMessage" id="contactsMessage" cols="35" rows="9" placeholder="Enter Your Message ..."></textarea>
+              <div >
+<!--                <span class="ErrorText" v-if="!$v.contactsMessage.required"> Message is required </span>-->
+                <span class="ErrorText" v-if="!$v.contactsMessage.minLength"> Message must have at least {{$v.contactsMessage.$params.minLength.min}} letters</span>
+                <span class="ErrorText" v-if="!$v.contactsMessage.maxLength"> Message must have at most {{$v.contactsMessage.$params.maxLength.min}} letters</span>
+              </div>
+            </div>
 
+            <div v-if="submitStatus" >
+              <p class="SuccessText" v-if="submitStatus === 'OK'">Thanks for your submission!</p>
+              <p class="ErrorText" v-if="submitStatus === 'ERROR'">Please fill the form correctly.</p>
+              <p class="PENDINGText" v-if="submitStatus === 'PENDING'">Sending...</p>
             </div>
 
             <div class="btn-group">
@@ -40,73 +52,54 @@
 </template>
 
 <script>
+import { required, minLength,maxLength} from 'vuelidate/lib/validators'
 export default {
   name: "ContactUsPage",
   data() {
     return {
-      errors: [],
-      name: null,
-      email: null,
-      contactsMessage: null
+      name: '',
+      email: '',
+      contactsMessage: '',
+      submitStatus: null
     }
+  },
+  validations:{
+    name:{required, minLength:minLength(3), maxLength:maxLength(50)},
+    email:{required, minLength:minLength(4), maxLength:maxLength(70)},
+    contactsMessage:{required, minLength:minLength(5), maxLength:maxLength(255)}
   },
   methods:{
     checkForm () {
-      if (this.name && this.email && this.contactsMessage) {
-        this.errors = [];
-        return true;
+      this.$v.$touch()
+      if (this.$v.$invalid) {
+        this.submitStatus = 'ERROR'
+      } else {
+        // do your submit logic here
+        this.submitStatus = 'PENDING'
+        setTimeout(() => {
+          this.submitStatus = 'OK'
+        }, 500)
       }
-      this.errors = [];
+    },
 
-      if (!this.name) {
-        this.errors.push('Name required.');
-      }
-      if (!this.email) {
-        this.errors.push('Email required.');
-      }
-      if (!this.contactsMessage) {
-        this.errors.push('Message required.');
-      }
-
-    },
-    checkTextArea(){
-      if (this.contactsMessage) {
-        this.errors = [];
-        return true;
-      }
-      if (!this.contactsMessage) {
-        this.errors.push('Message required.');
-      }
-    },
-    checkName(){
-      if (this.name) {
-        this.errors = [];
-        return true;
-      }
-      if (!this.name) {
-        this.errors.push('Name required.');
-      }
-    },
-    checkEmail(){
-      if (this.email) {
-        this.errors = [];
-        return true;
-      }
-      if (!this.email) {
-        this.errors.push('Email required.');
-      }
-    }
   }
 }
 </script>
 
 <style scoped>
-.error{
-  color: #7c1b1b;
-  font-size: 20px;
+.SuccessText{
+  color: #0b4712;
+  font-size: 16px;
   font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
   font-weight: bold;
 }
+.PENDINGText{
+  color: #696b15;
+  font-size: 16px;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  font-weight: bold;
+}
+
 .content-body {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -313,15 +306,20 @@ export default {
 }
 
 .inputError {
-  border: #c53c3c;
+  border: 6px solid #c53c3c;
   -webkit-box-shadow: 0px 1px 8px  #862929;
-  box-shadow: 0px 1px 8px  #862929;
+  box-shadow: 0px 2px 6px  #862929;
 }
 
 .inputSuccess {
-  border: #48c53c;
+  border: 6px solid #48c53c;
   -webkit-box-shadow: 0px 1px 8px  #298638;
-  box-shadow: 0px 1px 8px  #298638;
+  box-shadow: 0px 2px 6px  #298638;
+}
+
+.ErrorText{
+  color: #831e7d;
+  font-weight: bold;
 }
 
 @media only screen and (max-width: 800px) {
