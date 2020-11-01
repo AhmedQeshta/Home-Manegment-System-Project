@@ -1,6 +1,7 @@
 <template>
   <div id="app">
-    <div >
+
+    <div  class="body">
       <nav>
         <div title="logo Home Manegment System">
           <svg class="logo-nav" width="134" height="93" viewBox="0 0 134 93" fill="none" >
@@ -50,7 +51,7 @@
           </ul>
         </div>
       </div>
-      <router-view />
+      <router-view/>
     </div>
 
     <div hidden class="onLogin">
@@ -62,11 +63,9 @@
 
 <script>
 
+
 export default {
   name: 'App',
-  components: {
-
-  }
 }
 </script>
 <script>
@@ -85,6 +84,18 @@ $(document).ready(function(){
 }
 
 body {
+  padding: 0px;
+  margin: 0px;
+  position: relative;
+  background: linear-gradient(103.72deg, #1b242d 0%, #398d64 105.3%);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  height: 100vh;
+}
+.body{
   padding: 0px;
   margin: 0px;
   -webkit-user-select: none;

@@ -1,5 +1,6 @@
 <template>
   <div>
+
     <div class="content-body">
       <div class="main-body-content">
         <h2>Sign Up</h2>
@@ -7,7 +8,8 @@
           <div class="Group1">
             <div class="input-group ">
               <label for="name">Name</label>
-              <input v-model.trim="$v.name.$model" :class="{ 'inputError':$v.name.$error ,'inputSuccess':!$v.name.$invalid }" type="text" placeholder="Enter Your Name" name="name" id="name">
+              <input v-if="!submitStatus" :class="{ }" v-model.trim="$v.name.$model"  type="text" placeholder="Enter Your Name" name="name" >
+              <input v-else-if="submitStatus" v-model.trim="$v.name.$model" :class="{ 'inputError':$v.name.$error ,'inputSuccess':!$v.name.$invalid }" type="text" placeholder="Enter Your Name" name="name" id="name">
               <div >
                 <span class="ErrorText" v-if="!$v.name.minLength"> Name must have at least {{$v.name.$params.minLength.min}} letters</span>
                 <span class="ErrorText" v-if="!$v.name.maxLength"> Name must have at most {{$v.name.$params.maxLength.min}} letters</span>
@@ -15,7 +17,8 @@
             </div>
             <div class="input-group">
               <label for="email">E-Mail</label>
-              <input v-model.trim="$v.email.$model" :class="{ 'inputError':$v.email.$error ,'inputSuccess':!$v.email.$invalid }" type="email" placeholder="Enter Your E-Mail" name="email" id="email" >
+              <input v-if="!submitStatus" :class="{ }" v-model.trim="$v.email.$model"  type="email" placeholder="Enter Your E-Mail" name="email"  >
+              <input v-else-if="submitStatus" v-model.trim="$v.email.$model" :class="{ 'inputError':$v.email.$error ,'inputSuccess':!$v.email.$invalid }" type="email" placeholder="Enter Your E-Mail" name="email" id="email" >
               <div>
                 <span class="ErrorText" v-if="!$v.email.minLength"> Name must have at least {{$v.email.$params.minLength.min}} letters</span>
                 <span class="ErrorText" v-if="!$v.email.maxLength"> Name must have at most {{$v.email.$params.maxLength.min}} letters</span>
@@ -23,7 +26,8 @@
             </div>
             <div class="input-group ">
               <label for="Password">Password</label>
-              <input v-model.trim="$v.password.$model" :class="{ 'inputError':$v.password.$error ,'inputSuccess':!$v.password.$invalid }" type="password" placeholder="Enter Your Password" name="Password" id="Password" >
+              <input v-if="!submitStatus" :class="{ }" v-model.trim="$v.password.$model"  type="password" placeholder="Enter Your Password" name="Password"  >
+              <input v-else-if="submitStatus" v-model.trim="$v.password.$model" :class="{ 'inputError':$v.password.$error ,'inputSuccess':!$v.password.$invalid }" type="password" placeholder="Enter Your Password" name="Password" id="Password" >
               <div>
                 <span class="ErrorText" v-if="!$v.password.minLength"> password must have at least {{$v.password.$params.minLength.min}} letters</span>
                 <span class="ErrorText" v-if="!$v.password.maxLength"> password must have at most {{$v.password.$params.maxLength.min}} letters</span>
@@ -31,7 +35,8 @@
             </div>
             <div class="input-group">
               <label for="confirmPassword">Confirm Password</label>
-              <input v-model.trim="$v.confirmPassword.$model" :class="{ 'inputError':$v.confirmPassword.$error ,'inputSuccess':!$v.confirmPassword.$invalid }" type="password" placeholder="Confirm password" name="confirmPassword" id="confirmPassword" >
+              <input v-if="!submitStatus" :class="{ }" v-model.trim="$v.confirmPassword.$model"  type="password" placeholder="Confirm password" name="confirmPassword" >
+              <input v-else-if="submitStatus" v-model.trim="$v.confirmPassword.$model" :class="{ 'inputError':$v.confirmPassword.$error ,'inputSuccess':!$v.confirmPassword.$invalid }" type="password" placeholder="Confirm password" name="confirmPassword" id="confirmPassword" >
               <div>
                 <span class="ErrorText" v-if="!$v.confirmPassword.minLength"> password must have at least {{$v.confirmPassword.$params.minLength.min}} letters</span>
                 <span class="ErrorText" v-if="!$v.confirmPassword.maxLength"> password must have at most {{$v.confirmPassword.$params.maxLength.min}} letters</span>
@@ -59,8 +64,10 @@
 
 <script>
 import { required, minLength,maxLength,sameAs} from 'vuelidate/lib/validators'
+
 export default {
   name: "SignUpPage",
+
   data() {
     return {
       name: '',
@@ -80,19 +87,27 @@ export default {
     checkForm () {
       this.$v.$touch()
       if (this.$v.$invalid) {
-        this.submitStatus = 'ERROR'
+        this.submitStatus = 'ERROR';
+        setTimeout(() => {
+          this.submitStatus = null
+        }, 3000);
       } else {
         // do your submit logic here
         this.submitStatus = 'PENDING'
         setTimeout(() => {
           this.submitStatus = 'OK'
-        }, 500)
+        }, 500);
+        setTimeout(() => {
+          this.submitStatus = null
+        }, 3000);
+
       }
     },
 
   }
 }
 </script>
+
 
 <style scoped>
 .SuccessText{
@@ -112,15 +127,264 @@ export default {
   color: #831e7d;
   font-weight: bold;
 }
-.content-body {
-  text-align: center;
+:root {
+  --background_loginPage:  #343434 ;
+  --white_color:  white ;
+}
+
+body {
+  padding: 0px;
+  margin: 0px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  overflow: hidden;
+  position: relative;
+  background: linear-gradient(103.72deg, #45A0F4 0%, #68DFA6 105.3%);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  height: 100vh;
+}
+
+a {
+  text-decoration: none;
+  color: white;
+  -webkit-transition: all 0.25s;
+  transition: all 0.25s;
+}
+
+a:hover {
+  text-decoration: none;
+}
+
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+button:focus {
+  outline: none;
+}
+
+nav {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+  width: 80%;
+  margin: 30px auto;
+}
+
+nav ul {
+  display: inline-block;
+  margin: 30px auto;
+}
+
+nav ul li {
+  display: inline-block;
+  margin: 0 5px;
+}
+
+nav ul li a {
+  font-size: 20px;
+  font-family: Arial, Helvetica, sans-serif;
+  -webkit-transition: all 0.5s;
+  transition: all 0.5s;
+}
+
+nav ul li a:focus, nav ul li a:hover {
+  color: #35728f;
+}
+
+nav ul .siginUp {
+  background: #000000;
+  -webkit-box-shadow: 0px 4px 4px #00000040;
+  box-shadow: 0px 4px 4px #00000040;
+  border-radius: 30px;
+  padding: 6px 15px;
+}
+
+nav ul .siginUp a {
+  color: white;
+  font-size: 16px;
+  text-transform: uppercase;
+}
+
+nav ul .siginUp a:focus, nav ul .siginUp a:hover {
+  color: white;
+  border-bottom: none;
+}
+
+nav .Nav-List-1 {
+  margin: 0px 40px;
+  position: relative;
+}
+
+nav .Nav-List-1 li:nth-child(1)::after {
+  content: "";
+  background: none;
+  width: 55px;
+  height: 3px;
+  border-radius: 10px;
   position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%,-50%);
+  bottom: -5px;
+  right: 105px;
+}
+
+nav .Nav-List-1 li:nth-child(1):focus::after, nav .Nav-List-1 li:nth-child(1):hover::after {
+  content: "";
+  -webkit-transition: linear 0.3s;
+  transition: linear 0.3s;
+  background-color: #35728f;
+  width: 55px;
+  height: 3px;
+  border-radius: 10px;
+  position: absolute;
+  bottom: -5px;
+  right: 165px;
+}
+
+nav .Nav-List-1 li:nth-child(2)::after {
+  content: "";
+  background: none;
+  width: 60px;
+  height: 3px;
+  border-radius: 10px;
+  position: absolute;
+  bottom: -5px;
+  right: 165px;
+}
+
+nav .Nav-List-1 li:nth-child(2):focus::after, nav .Nav-List-1 li:nth-child(2):hover::after {
+  -webkit-transition: linear 0.3s;
+  transition: linear 0.3s;
+  content: "";
+  background-color: #35728f;
+  width: 60px;
+  height: 3px;
+  border-radius: 10px;
+  position: absolute;
+  bottom: -5px;
+  right: 95px;
+}
+
+nav .Nav-List-1 li:nth-child(3)::after {
+  content: "";
+  background: none;
+  width: 90px;
+  height: 3px;
+  border-radius: 10px;
+  position: absolute;
+  bottom: -5px;
+  right: 95px;
+}
+
+nav .Nav-List-1 li:nth-child(3):focus::after, nav .Nav-List-1 li:nth-child(3):hover::after {
+  -webkit-transition: linear 0.3s;
+  transition: linear 0.3s;
+  content: "";
+  background: #35728f;
+  width: 80px;
+  height: 3px;
+  border-radius: 10px;
+  position: absolute;
+  bottom: -5px;
+  right: 5px;
+}
+
+.nav-items {
+  -webkit-transition: ease-in-out 0.5s;
+  transition: ease-in-out 0.5s;
+  display: block;
+}
+
+.bargar-item {
+  margin: 30px 0px;
+  -webkit-transition: ease-in-out 0.5s;
+  transition: ease-in-out 0.5s;
+  display: none;
+  cursor: pointer;
+}
+
+.open {
+  -webkit-transition: ease-in-out 0.5s;
+  transition: ease-in-out 0.5s;
+  display: none;
+}
+
+.min-nav-items {
+  background: linear-gradient(103.72deg, #45A0F4 0%, #68DFA6 105.3%);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  height: 100vh;
+}
+
+.min-nav-items ul {
+  text-align: center;
+  padding: 15px;
+}
+
+.min-nav-items ul li {
+  padding: 30px;
+}
+
+.min-nav-items ul li a {
+  font-size: 20px;
+  font-family: Arial, Helvetica, sans-serif;
+  -webkit-transition: all 0.5s;
+  transition: all 0.5s;
+}
+
+.min-nav-items ul li a:focus, .min-nav-items ul li a:hover {
+  color: #35728f;
+}
+
+.min-nav-items ul:nth-child(2) li {
+  display: inline;
+  padding: 10px;
+}
+
+.min-nav-items ul .siginUp {
+  background: #000000;
+  -webkit-box-shadow: 0px 4px 4px #00000040;
+  box-shadow: 0px 4px 4px #00000040;
+  border-radius: 30px;
+  padding: 6px 15px;
+}
+
+.min-nav-items ul .siginUp a {
+  color: white;
+  font-size: 16px;
+  text-transform: uppercase;
+}
+
+.min-nav-items ul .siginUp a:focus, .min-nav-items ul .siginUp a:hover {
+  color: white;
+  border-bottom: none;
+}
+
+.content-body {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  text-align: center;
   width: 400px;
-  margin: auto;
-  padding:30px 0px;
+  margin: 10px auto;
   background: linear-gradient(103.72deg, #459ff470 0%, #68dfa67c 105.3%);
   background-repeat: no-repeat;
   background-size: cover;
@@ -165,7 +429,7 @@ export default {
   transition: ease-in-out 0.3s;
   content: "";
   background: #8ae4e4;
-  width: 110px;
+  width: 70px;
   height: 4px;
   border-radius: 10px;
   position: absolute;
@@ -199,7 +463,7 @@ export default {
   transition: ease-in-out 0.3s;
   content: "";
   background: #8ae4e4;
-  width: 110px;
+  width: 70px;
   height: 4px;
   border-radius: 10px;
   position: absolute;
@@ -253,6 +517,16 @@ export default {
   font-family: Arial, Helvetica, sans-serif;
   color: #C9E6F5;
   font-size: 16px;
+}
+
+.content-body form .input-group label a {
+  color: #a9dfcd;
+  -webkit-transition: all 0.35s;
+  transition: all 0.35s;
+}
+
+.content-body form .input-group label a:hover, .content-body form .input-group label a:focus {
+  color: #cceaf0;
 }
 
 .content-body form .input-group input[type=text], .content-body form .input-group input[type=email], .content-body form .input-group input[type=password] {
@@ -330,6 +604,38 @@ export default {
 }
 
 @media only screen and (max-width: 800px) {
+  body {
+    height: 100vh;
+  }
+  nav {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    width: 80%;
+    margin: 30px auto;
+  }
+  .nav-items {
+    display: none;
+  }
+  .bargar-item {
+    display: contents;
+  }
+  svg.logo-nav {
+    width: 80px;
+    height: 80px;
+    padding: 10px 0px;
+  }
+  svg.bargar {
+    width: 45px;
+    height: 45px;
+    padding: 10px 0px;
+  }
   .content-body {
     display: -webkit-box;
     display: -ms-flexbox;
@@ -470,4 +776,5 @@ export default {
     border: none;
   }
 }
+/*# sourceMappingURL=style.css.map */
 </style>

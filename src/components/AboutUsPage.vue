@@ -1,5 +1,6 @@
 <template>
   <div>
+
     <div class="content-body">
       <div>
         <h2>About Us</h2>
@@ -13,10 +14,12 @@
 </template>
 
 <script>
+
 export default {
-name: "AboutUsPage"
+  name: "AboutUsPage",
 }
 </script>
+
 
 <style scoped>
   .content-body {
