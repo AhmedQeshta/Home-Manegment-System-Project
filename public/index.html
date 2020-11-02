@@ -8,6 +8,319 @@
     <title><%= htmlWebpackPlugin.options.title %></title>
       <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
       <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" >
+      <style>
+          :root {
+              --background_loginPage:  #343434 ;
+              --white_color:  white ;
+          }
+
+          /*body {*/
+          /*    padding: 0px;*/
+          /*    margin: 0px;*/
+          /*    position: relative;*/
+          /*    background: linear-gradient(103.72deg, #1b242d 0%, #398d64 105.3%);*/
+          /*    background-repeat: no-repeat;*/
+          /*    background-size: cover;*/
+          /*    background-position: center;*/
+          /*    -webkit-box-sizing: border-box;*/
+          /*    box-sizing: border-box;*/
+          /*    height: 100vh;*/
+          /*}*/
+          .body{
+              padding: 0px;
+              margin: 0px;
+              -webkit-user-select: none;
+              -moz-user-select: none;
+              -ms-user-select: none;
+              user-select: none;
+              overflow: hidden;
+              position: relative;
+              background: linear-gradient(103.72deg, #45A0F4 0%, #68DFA6 105.3%);
+              background-repeat: no-repeat;
+              background-size: cover;
+              background-position: center;
+              -webkit-box-sizing: border-box;
+              box-sizing: border-box;
+              height: 100vh;
+          }
+
+          a {
+              text-decoration: none;
+              color: white;
+              -webkit-transition: all 0.25s;
+              transition: all 0.25s;
+          }
+
+          a:hover {
+              text-decoration: none;
+          }
+
+          ul {
+              list-style-type: none;
+              margin: 0;
+              padding: 0;
+          }
+
+          button:focus {
+              outline: none;
+          }
+
+          nav {
+              display: -webkit-box;
+              display: -ms-flexbox;
+              display: flex;
+              -webkit-box-pack: justify;
+              -ms-flex-pack: justify;
+              justify-content: space-between;
+              width: 80%;
+              margin: 30px auto;
+          }
+
+          nav ul {
+              display: inline-block;
+              margin: 30px auto;
+          }
+
+          nav ul li {
+              display: inline-block;
+              margin: 0 5px;
+              padding: 0px 5px;
+          }
+
+          nav ul li a {
+              font-size: 20px;
+              font-family: Arial, Helvetica, sans-serif;
+              -webkit-transition: all 0.5s;
+              transition: all 0.5s;
+          }
+
+          nav ul li a:focus, nav ul li a:hover {
+              color: #35728f;
+          }
+
+          nav ul .siginUp {
+              background: #000000;
+              -webkit-box-shadow: 0px 4px 4px #00000040;
+              box-shadow: 0px 4px 4px #00000040;
+              border-radius: 30px;
+              padding: 6px 15px;
+          }
+          nav ul .siginUp:hover {
+              background: #07323b;
+              -webkit-box-shadow: 0px 4px 4px rgba(5, 5, 5, 0.25);
+              box-shadow: 0px 4px 4px rgba(5, 5, 5, 0.25);
+              border-radius: 30px;
+              padding: 6px 15px;
+          }
+
+          nav ul .siginUp a {
+              color: white;
+              font-size: 16px;
+              text-transform: uppercase;
+          }
+
+          nav ul .siginUp a:focus, nav ul .siginUp a:hover {
+              color: white;
+              border-bottom: none;
+          }
+
+          nav .Nav-List-1 {
+              margin: 0px 40px;
+              position: relative;
+          }
+
+          nav .Nav-List-1 li:nth-child(1)::after {
+              content: "";
+              background: none;
+              width: 55px;
+              height: 3px;
+              border-radius: 10px;
+              position: absolute;
+              bottom: -5px;
+              right: 105px;
+          }
+
+          nav .Nav-List-1 li:nth-child(1):focus::after, nav .Nav-List-1 li:nth-child(1):hover::after {
+              content: "";
+              -webkit-transition: linear 0.3s;
+              transition: linear 0.3s;
+              background-color: #35728f;
+              width: 55px;
+              height: 3px;
+              border-radius: 10px;
+              position: absolute;
+              bottom: -5px;
+              right: 180px;
+          }
+
+          nav .Nav-List-1 li:nth-child(2)::after {
+              content: "";
+              background: none;
+              width: 60px;
+              height: 3px;
+              border-radius: 10px;
+              position: absolute;
+              bottom: -5px;
+              right: 180px;
+          }
+
+          nav .Nav-List-1 li:nth-child(2):focus::after, nav .Nav-List-1 li:nth-child(2):hover::after {
+              -webkit-transition: linear 0.3s;
+              transition: linear 0.3s;
+              content: "";
+              background-color: #35728f;
+              width: 60px;
+              height: 3px;
+              border-radius: 10px;
+              position: absolute;
+              bottom: -5px;
+              right: 105px;
+          }
+
+          nav .Nav-List-1 li:nth-child(3)::after {
+              content: "";
+              background: none;
+              width: 90px;
+              height: 3px;
+              border-radius: 10px;
+              position: absolute;
+              bottom: -5px;
+              right: 105px;
+          }
+
+          nav .Nav-List-1 li:nth-child(3):focus::after, nav .Nav-List-1 li:nth-child(3):hover::after {
+              -webkit-transition: linear 0.3s;
+              transition: linear 0.3s;
+              content: "";
+              background: #35728f;
+              width: 80px;
+              height: 3px;
+              border-radius: 10px;
+              position: absolute;
+              bottom: -5px;
+              right: 10px;
+          }
+
+          .nav-items {
+              -webkit-transition: ease-in-out 0.5s;
+              transition: ease-in-out 0.5s;
+              display: block;
+          }
+
+          .bargar-item {
+              margin: 30px 0px;
+              -webkit-transition: ease-in-out 0.5s;
+              transition: ease-in-out 0.5s;
+              display: none;
+              cursor: pointer;
+          }
+
+          .open {
+              -webkit-transition: ease-in-out 0.5s;
+              transition: ease-in-out 0.5s;
+              display: none;
+          }
+
+          .min-nav-items {
+              background: linear-gradient(103.72deg, #45A0F4 0%, #68DFA6 105.3%);
+              background-repeat: no-repeat;
+              background-size: cover;
+              background-position: center;
+              height: 100vh;
+          }
+
+          .min-nav-items ul {
+              text-align: center;
+              padding: 15px;
+          }
+
+          .min-nav-items ul li {
+              padding: 30px;
+          }
+
+          .min-nav-items ul li a {
+              font-size: 20px;
+              font-family: Arial, Helvetica, sans-serif;
+              -webkit-transition: all 0.5s;
+              transition: all 0.5s;
+          }
+
+          .min-nav-items ul li a:focus, .min-nav-items ul li a:hover {
+              color: #35728f;
+          }
+
+          .min-nav-items ul:nth-child(2) li {
+              display: inline;
+              padding: 10px;
+          }
+
+          .min-nav-items ul .siginUp {
+              background: #000000;
+              -webkit-box-shadow: 0px 4px 4px #00000040;
+              box-shadow: 0px 4px 4px #00000040;
+              border-radius: 30px;
+              padding: 6px 15px;
+          }
+
+          .min-nav-items ul .siginUp a {
+              color: white;
+              font-size: 16px;
+              text-transform: uppercase;
+          }
+
+          .min-nav-items ul .siginUp a:focus, .min-nav-items ul .siginUp a:hover {
+              color: white;
+              border-bottom: none;
+          }
+
+
+          .inputError {
+              border: #c53c3c;
+              -webkit-box-shadow: 0px 1px 8px  #862929;
+              box-shadow: 0px 1px 8px  #862929;
+          }
+
+          .inputSuccess {
+              border: #48c53c;
+              -webkit-box-shadow: 0px 1px 8px  #298638;
+              box-shadow: 0px 1px 8px  #298638;
+          }
+
+          @media only screen and (max-width: 800px) {
+              body {
+                  height: 100vh;
+              }
+              nav {
+                  display: -webkit-box;
+                  display: -ms-flexbox;
+                  display: flex;
+                  -webkit-box-pack: justify;
+                  -ms-flex-pack: justify;
+                  justify-content: space-between;
+                  -webkit-box-align: center;
+                  -ms-flex-align: center;
+                  align-items: center;
+                  width: 80%;
+                  margin: 30px auto;
+              }
+              .nav-items {
+                  display: none;
+              }
+              .bargar-item {
+                  display: contents;
+              }
+              svg.logo-nav {
+                  width: 80px;
+                  height: 80px;
+                  padding: 10px 0px;
+              }
+              svg.bargar {
+                  width: 45px;
+                  height: 45px;
+                  padding: 10px 0px;
+              }
+          }
+      </style>
   </head>
   <body>
   <!--  -->
@@ -21,5 +334,14 @@
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" ></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" ></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" ></script>
+
+  <script>
+      $(document).ready(function(){
+          $("#btn-bargar").click(function(){
+              $("#nav-items").toggleClass("open");
+          });
+      });
+  </script>
+
   </body>
 </html>

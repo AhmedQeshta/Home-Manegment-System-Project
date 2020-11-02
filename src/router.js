@@ -6,17 +6,37 @@ import ContactUsPage from "@/components/ContactUsPage";
 import LoginPage from "@/components/LoginPage";
 import SignUpPage from "@/components/SignUpPage";
 import ForgetPassword from "@/components/ForgetPassword";
+import main from "@/components/MainPage/main";
+
+import store from "@/vuex";
 
 Vue.use(Router)
 
 export default new Router({
     mode : 'history',
     routes:[
-        {path: '/' , component: WelcomePage},
-        {path: '/aboutUs' , component: AboutUsPage},
-        {path: '/contactUs' , component: ContactUsPage},
-        {path: '/login' , component: LoginPage},
-        {path: '/register' , component: SignUpPage},
-        {path: '/forgetPassword' , component: ForgetPassword},
+        {path: '/' , name:WelcomePage, component: WelcomePage},
+        {path: '/aboutUs' ,name: AboutUsPage , component: AboutUsPage},
+        {path: '/contactUs' , name: ContactUsPage , component: ContactUsPage},
+        {
+            path: '/login' ,
+            name : LoginPage ,
+            component: LoginPage,
+
+        },
+        {path: '/register' , name: SignUpPage, component: SignUpPage},
+        {path: '/forgetPassword' , name: ForgetPassword , component: ForgetPassword},
+        {
+            path: '/mainPage',
+            component:  main,
+            beforeEnter: (to, from, next)=>{
+                if (!store.getters['user']){
+                    return next({
+                        path: '/login'
+                    })
+                }
+                next()
+            }
+        },
     ]
 })

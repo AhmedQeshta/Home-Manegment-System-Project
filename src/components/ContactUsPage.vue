@@ -1,6 +1,6 @@
 <template>
   <div>
-
+    <NavBar/>
     <div class="content-body">
       <div>
         <h2>Contact Us</h2>
@@ -58,9 +58,12 @@
 
 <script>
 import { required, minLength,maxLength} from 'vuelidate/lib/validators'
-
+import NavBar from "@/components/TopBar/NavBar";
 export default {
   name: "ContactUsPage",
+  components:{
+    NavBar,
+  },
   data() {
     return {
       name: '',

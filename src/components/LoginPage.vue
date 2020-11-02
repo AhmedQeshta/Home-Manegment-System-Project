@@ -1,5 +1,6 @@
 <template>
   <div>
+    <NavBar/>
     <div class="content-body">
       <div class="main-body-content">
         <h2>Login</h2>
@@ -26,9 +27,12 @@
           </div>
 
           <div v-if="submitStatus" >
-            <p class="SuccessText" v-if="submitStatus === 'OK'">Thanks for your submission!</p>
             <p class="ErrorText" v-if="submitStatus === 'ERROR'">Please fill the form correctly.</p>
             <p class="PENDINGText" v-if="submitStatus === 'PENDING'">Sending...</p>
+            <p class="SuccessText" v-if="submitStatus === 'OK' && !error">Thanks for your submission!</p>
+            <div v-if="error">
+              <p class="ErrorText"> {{error}}</p>
+            </div>
           </div>
 
           <div class="Group2">
@@ -47,15 +51,19 @@
 
 <script>
 import { required, minLength,maxLength} from 'vuelidate/lib/validators'
-
+import axios from "axios";
+import NavBar from "@/components/TopBar/NavBar";
 export default {
   name: "LoginPage",
-
+  components:{
+      NavBar,
+    },
   data() {
     return {
       email: '',
       password: '',
-      submitStatus: null
+      submitStatus: null,
+      error:null
     }
   },
   validations:{
@@ -63,7 +71,8 @@ export default {
     password:{required, minLength:minLength(6), maxLength:maxLength(60)},
   },
   methods:{
-    checkForm () {
+
+    async checkForm () {
       this.$v.$touch()
       if (this.$v.$invalid) {
         this.submitStatus = 'ERROR';
@@ -75,10 +84,26 @@ export default {
         this.submitStatus = 'PENDING'
         setTimeout(() => {
           this.submitStatus = 'OK'
-        }, 500);
+        }, 200);
         setTimeout(() => {
           this.submitStatus = null
         }, 3000);
+
+        try {
+          const response  = await axios.post('login-api',{
+            email     : this.email,
+            password  : this.password
+          });
+
+          localStorage.setItem('token' , response.data.token);
+          await this.$store.dispatch('user', response.data);
+          this.$router.push('/mainPage');
+
+        }catch (e) {
+            this.error = 'Invalid Email/Password'
+        }
+
+
       }
     },
 
@@ -349,19 +374,20 @@ nav .Nav-List-1 li:nth-child(3):focus::after, nav .Nav-List-1 li:nth-child(3):ho
 }
 
 .content-body {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: center;
-  -ms-flex-pack: center;
-  justify-content: center;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-  -ms-flex-direction: column;
-  flex-direction: column;
+  /*display: -webkit-box;*/
+  /*display: -ms-flexbox;*/
+  /*display: flex;*/
+  /*-webkit-box-pack: center;*/
+  /*-ms-flex-pack: center;*/
+  /*justify-content: center;*/
+  /*-webkit-box-orient: vertical;*/
+  /*-webkit-box-direction: normal;*/
+  /*-ms-flex-direction: column;*/
+  /*flex-direction: column;*/
   text-align: center;
-  width: 400px;
+  width: 500px;
   margin: 10px auto;
+  padding: 10px 0px;
   background: linear-gradient(103.72deg, #459ff470 0%, #68dfa67c 105.3%);
   background-repeat: no-repeat;
   background-size: cover;
@@ -371,6 +397,11 @@ nav .Nav-List-1 li:nth-child(3):focus::after, nav .Nav-List-1 li:nth-child(3):ho
   -webkit-box-shadow: 1px 1px 8px 1px #abeecd;
   box-shadow: 1px 1px 8px 1px #abeecd;
   border-radius: 10px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+
 }
 
 .content-body h2 {

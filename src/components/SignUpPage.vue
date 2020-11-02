@@ -1,6 +1,6 @@
 <template>
   <div>
-
+  <NavBar/>
     <div class="content-body">
       <div class="main-body-content">
         <h2>Sign Up</h2>
@@ -34,13 +34,13 @@
               </div>
             </div>
             <div class="input-group">
-              <label for="confirmPassword">Confirm Password</label>
-              <input v-if="!submitStatus" :class="{ }" v-model.trim="$v.confirmPassword.$model"  type="password" placeholder="Confirm password" name="confirmPassword" >
-              <input v-else-if="submitStatus" v-model.trim="$v.confirmPassword.$model" :class="{ 'inputError':$v.confirmPassword.$error ,'inputSuccess':!$v.confirmPassword.$invalid }" type="password" placeholder="Confirm password" name="confirmPassword" id="confirmPassword" >
+              <label for="password_confirmation">Confirm Password</label>
+              <input v-if="!submitStatus" :class="{ }" v-model.trim="$v.password_confirmation.$model"  type="password" placeholder="Confirm password" name="password_confirmation" >
+              <input v-else-if="submitStatus" v-model.trim="$v.password_confirmation.$model" :class="{ 'inputError':$v.password_confirmation.$error ,'inputSuccess':!$v.password_confirmation.$invalid }" type="password" placeholder="Confirm password" name="password_confirmation" id="password_confirmation" >
               <div>
-                <span class="ErrorText" v-if="!$v.confirmPassword.minLength"> password must have at least {{$v.confirmPassword.$params.minLength.min}} letters</span>
-                <span class="ErrorText" v-if="!$v.confirmPassword.maxLength"> password must have at most {{$v.confirmPassword.$params.maxLength.min}} letters</span>
-                <span class="ErrorText" v-if="!$v.confirmPassword.sameAsPassword">Passwords must be identical</span>
+                <span class="ErrorText" v-if="!$v.password_confirmation.minLength"> password must have at least {{$v.password_confirmation.$params.minLength.min}} letters</span>
+                <span class="ErrorText" v-if="!$v.password_confirmation.maxLength"> password must have at most {{$v.password_confirmation.$params.maxLength.min}} letters</span>
+                <span class="ErrorText" v-if="!$v.password_confirmation.sameAsPassword">Passwords must be identical</span>
               </div>
             </div>
           </div>
@@ -64,16 +64,20 @@
 
 <script>
 import { required, minLength,maxLength,sameAs} from 'vuelidate/lib/validators'
-
+import axios from 'axios'
+import NavBar from "@/components/TopBar/NavBar";
 export default {
   name: "SignUpPage",
+  components:{
+      NavBar,
+  },
 
   data() {
     return {
       name: '',
       email: '',
       password: '',
-      confirmPassword: '',
+      password_confirmation: '',
       submitStatus: null
     }
   },
@@ -81,10 +85,10 @@ export default {
     name:{required, minLength:minLength(3), maxLength:maxLength(50)},
     email:{required, minLength:minLength(4), maxLength:maxLength(70)},
     password:{required, minLength:minLength(6), maxLength:maxLength(60)},
-    confirmPassword:{required, minLength:minLength(6), maxLength:maxLength(60),sameAsPassword: sameAs('password')}
+    password_confirmation:{required, minLength:minLength(6), maxLength:maxLength(60),sameAsPassword: sameAs('password')}
   },
   methods:{
-    checkForm () {
+    async checkForm () {
       this.$v.$touch()
       if (this.$v.$invalid) {
         this.submitStatus = 'ERROR';
@@ -96,13 +100,24 @@ export default {
         this.submitStatus = 'PENDING'
         setTimeout(() => {
           this.submitStatus = 'OK'
-        }, 500);
+        }, 250);
         setTimeout(() => {
           this.submitStatus = null
-        }, 3000);
+        }, 2000);
+
+
+        await axios.post('register-api',{
+          name  : this.name,
+          email     : this.email,
+          password  : this.password,
+          password_confirmation : this.password_confirmation
+        });
+
+        this.$router.push('/login');
 
       }
     },
+
 
   }
 }
@@ -372,18 +387,12 @@ nav .Nav-List-1 li:nth-child(3):focus::after, nav .Nav-List-1 li:nth-child(3):ho
 }
 
 .content-body {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: center;
-  -ms-flex-pack: center;
-  justify-content: center;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-  -ms-flex-direction: column;
-  flex-direction: column;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
   text-align: center;
-  width: 400px;
+  width: 500px;
   margin: 10px auto;
   background: linear-gradient(103.72deg, #459ff470 0%, #68dfa67c 105.3%);
   background-repeat: no-repeat;

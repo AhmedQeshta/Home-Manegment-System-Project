@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-
+  <NavBar/>
     <div class="content-body">
       <div>
         <svg class="svg-background" width="646" height="600" viewBox="0 0 646 600" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -81,10 +81,12 @@
 </template>
 
 <script>
-
+  import NavBar from "@/components/TopBar/NavBar";
 export default {
   name: "WelcomePage",
-
+  components:{
+      NavBar,
+    },
 
 }
 </script>

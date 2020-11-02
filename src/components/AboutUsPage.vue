@@ -1,6 +1,6 @@
 <template>
   <div>
-
+    <NavBar/>
     <div class="content-body">
       <div>
         <h2>About Us</h2>
@@ -14,9 +14,12 @@
 </template>
 
 <script>
-
+import NavBar from "@/components/TopBar/NavBar";
 export default {
   name: "AboutUsPage",
+  components:{
+    NavBar,
+  },
 }
 </script>
 
