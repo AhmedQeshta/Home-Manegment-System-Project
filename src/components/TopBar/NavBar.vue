@@ -31,7 +31,7 @@
           <li class="siginUp"><router-link to="/register">Sign Up</router-link></li>
         </ul>
       </div>
-      <div title="Nav button" id="btn-bargar" class="bargar-item">
+      <div @click="show = !show" :aria-expanded="show ? 'true' : 'false'"  title="Nav button" id="btn-bargar" class="bargar-item">
         <svg class="bargar" width="35" height="35" viewBox="0 0 35 35" fill="none" >
           <path d="M32.7564 6.28202H2.24362C1.0042 6.28202 0 5.27782 0 4.03847C0 2.79911 1.0042 1.79485 2.24362 1.79485H32.7564C33.9958 1.79485 35 2.79904 35 4.03847C35 5.27789 33.9958 6.28202 32.7564 6.28202Z" fill="#F2F2F2"/>
           <path d="M20.1923 19.7436H2.24362C1.0042 19.7436 0 18.7394 0 17.5C0 16.2606 1.0042 15.2564 2.24362 15.2564H20.1923C21.4317 15.2564 22.436 16.2606 22.436 17.5C22.436 18.7394 21.4317 19.7436 20.1923 19.7436Z" fill="#F2F2F2"/>
@@ -41,7 +41,7 @@
 
       </div>
     </nav>
-    <div id="nav-items" class="open min-nav-items">
+    <div id="nav-items" v-if="show"  class="min-nav-items">
       <div >
         <ul>
           <li><router-link to="/">Home</router-link></li>
@@ -62,9 +62,13 @@
 
 <script>
 import {mapGetters} from "vuex";
-
 export default {
   name: "Nav-Bar",
+  data(){
+    return{
+      show: false
+    }
+  },
   methods:{
     handleClick(){
       localStorage.removeItem('token');
@@ -78,6 +82,292 @@ export default {
 }
 </script>
 
-<style scoped>
+<style>
+:root {
+  --background_loginPage:  #343434 ;
+  --white_color:  white ;
+}
 
+body {
+  padding: 0px;
+  margin: 0px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  overflow: hidden;
+  position: relative;
+  background: linear-gradient(103.72deg, #45A0F4 0%, #68DFA6 105.3%);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  height: 100vh;
+}
+
+a {
+  text-decoration: none;
+  color: white;
+  -webkit-transition: all 0.25s;
+  transition: all 0.25s;
+}
+
+a:hover {
+  text-decoration: none;
+}
+
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+button:focus {
+  outline: none;
+}
+
+nav {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+  width: 80%;
+  margin: 30px auto;
+}
+
+nav ul {
+  display: inline-block;
+  margin: 30px auto;
+}
+
+nav ul li {
+  display: inline-block;
+  margin: 0 5px;
+}
+
+nav ul li a {
+  font-size: 20px;
+  font-family: Arial, Helvetica, sans-serif;
+  -webkit-transition: all 0.5s;
+  transition: all 0.5s;
+}
+
+nav ul li a:focus, nav ul li a:hover {
+  color: #35728f;
+}
+
+nav ul .siginUp {
+  background: #000000;
+  -webkit-box-shadow: 0px 4px 4px #00000040;
+  box-shadow: 0px 4px 4px #00000040;
+  border-radius: 30px;
+  padding: 6px 15px;
+}
+
+nav ul .siginUp a {
+  color: white;
+  font-size: 16px;
+  text-transform: uppercase;
+}
+
+nav ul .siginUp a:focus, nav ul .siginUp a:hover {
+  color: white;
+  border-bottom: none;
+}
+
+nav .Nav-List-1 {
+  margin: 0px 40px;
+  position: relative;
+}
+
+nav .Nav-List-1 li:nth-child(1)::after {
+  content: "";
+  background: none;
+  width: 55px;
+  height: 3px;
+  border-radius: 10px;
+  position: absolute;
+  bottom: -5px;
+  right: 105px;
+}
+
+nav .Nav-List-1 li:nth-child(1):focus::after, nav .Nav-List-1 li:nth-child(1):hover::after {
+  content: "";
+  -webkit-transition: linear 0.3s;
+  transition: linear 0.3s;
+  background-color: #35728f;
+  width: 55px;
+  height: 3px;
+  border-radius: 10px;
+  position: absolute;
+  bottom: -5px;
+  right: 165px;
+}
+
+nav .Nav-List-1 li:nth-child(2)::after {
+  content: "";
+  background: none;
+  width: 60px;
+  height: 3px;
+  border-radius: 10px;
+  position: absolute;
+  bottom: -5px;
+  right: 165px;
+}
+
+nav .Nav-List-1 li:nth-child(2):focus::after, nav .Nav-List-1 li:nth-child(2):hover::after {
+  -webkit-transition: linear 0.3s;
+  transition: linear 0.3s;
+  content: "";
+  background-color: #35728f;
+  width: 60px;
+  height: 3px;
+  border-radius: 10px;
+  position: absolute;
+  bottom: -5px;
+  right: 95px;
+}
+
+nav .Nav-List-1 li:nth-child(3)::after {
+  content: "";
+  background: none;
+  width: 90px;
+  height: 3px;
+  border-radius: 10px;
+  position: absolute;
+  bottom: -5px;
+  right: 95px;
+}
+
+nav .Nav-List-1 li:nth-child(3):focus::after, nav .Nav-List-1 li:nth-child(3):hover::after {
+  -webkit-transition: linear 0.3s;
+  transition: linear 0.3s;
+  content: "";
+  background: #35728f;
+  width: 80px;
+  height: 3px;
+  border-radius: 10px;
+  position: absolute;
+  bottom: -5px;
+  right: 5px;
+}
+
+.nav-items {
+  -webkit-transition: ease-in-out 0.5s;
+  transition: ease-in-out 0.5s;
+  display: block;
+}
+
+.bargar-item {
+  margin: 30px 0px;
+  -webkit-transition: ease-in-out 0.5s;
+  transition: ease-in-out 0.5s;
+  display: none;
+  cursor: pointer;
+}
+
+.open {
+  -webkit-transition: ease-in-out 0.5s;
+  transition: ease-in-out 0.5s;
+  display: none;
+}
+
+
+@media only screen and (max-width: 800px) {
+  body {
+    height: 100vh;
+  }
+  nav {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    width: 80%;
+    margin: 30px auto;
+  }
+  .nav-items {
+    display: none;
+  }
+  .bargar-item {
+    display: contents;
+  }
+  svg.logo-nav {
+    width: 80px;
+    height: 80px;
+    padding: 10px 0px;
+  }
+  svg.bargar {
+    width: 45px;
+    height: 45px;
+    padding: 10px 0px;
+  }
+  .min-nav-items {
+    background: linear-gradient(103.72deg, #45A0F4 0%, #68DFA6 105.3%);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    height: 100vh;
+    position: relative;
+    z-index: 1;
+  }
+
+  .min-nav-items ul {
+    text-align: center;
+    padding: 15px;
+  }
+
+  .min-nav-items ul li {
+    padding: 30px;
+  }
+
+  .min-nav-items ul li a {
+    font-size: 20px;
+    font-family: Arial, Helvetica, sans-serif;
+    -webkit-transition: all 0.5s;
+    transition: all 0.5s;
+  }
+
+  .min-nav-items ul li a:focus, .min-nav-items ul li a:hover {
+    color: #35728f;
+  }
+
+  .min-nav-items ul:nth-child(2) li {
+    display: inline;
+    padding: 10px;
+  }
+
+  .min-nav-items ul .siginUp {
+    background: #000000;
+    -webkit-box-shadow: 0px 4px 4px #00000040;
+    box-shadow: 0px 4px 4px #00000040;
+    border-radius: 30px;
+    padding: 6px 15px;
+  }
+
+  .min-nav-items ul .siginUp a {
+    color: white;
+    font-size: 16px;
+    text-transform: uppercase;
+  }
+
+  .min-nav-items ul .siginUp a:focus, .min-nav-items ul .siginUp a:hover {
+    color: white;
+    border-bottom: none;
+  }
+}
 </style>
+
+
+
+
+
+
+
