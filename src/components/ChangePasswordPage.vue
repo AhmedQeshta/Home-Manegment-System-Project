@@ -1,23 +1,34 @@
 <template>
   <div>
-  <NavBar/>
+    <NavBar/>
     <div class="content-body">
       <div class="main-body-content">
-        <h2>Reset Password</h2>
+        <h2>Change Password</h2>
         <form action="#" @submit.prevent="checkForm">
           <div class="Group1">
+
             <div class="input-group">
               <p>
-                submit a registered email so that we can confirm your identity and send you an email to reset the password
+                Enter New Password, And Can Login With new Password.
               </p>
             </div>
             <div class="input-group">
-              <label>E-Mail</label>
-              <input v-if="!submitStatus" :class="{ }" v-model.trim="$v.email.$model" type="email" placeholder="Enter Your E-Mail" name="email">
-              <input v-else v-model.trim="$v.email.$model" :class="{ 'inputError':$v.email.$error ,'inputSuccess':!$v.email.$invalid }" type="email" placeholder="Enter Your E-Mail" name="email">
+              <label>Password</label>
+              <input v-if="!submitStatus" :class="{ }" v-model.trim="$v.password.$model" type="password" placeholder="Enter New password" name="password">
+              <input v-else v-model.trim="$v.password.$model" :class="{ 'inputError':$v.password.$error ,'inputSuccess':!$v.password.$invalid }"  type="password" placeholder="Enter New password" name="password">
               <div>
-                <span class="ErrorText" v-if="!$v.email.minLength"> E-mail must have at least {{$v.email.$params.minLength.min}} letters</span>
-                <span class="ErrorText" v-if="!$v.email.maxLength"> E-mail must have at most {{$v.email.$params.maxLength.min}} letters</span>
+                <span class="ErrorText" v-if="!$v.password.minLength"> password must have at least {{$v.password.$params.minLength.min}} letters</span>
+                <span class="ErrorText" v-if="!$v.password.maxLength"> password must have at most {{$v.password.$params.maxLength.min}} letters</span>
+              </div>
+            </div>
+            <div class="input-group">
+              <label>Confirm password</label>
+              <input v-if="!submitStatus" :class="{ }" v-model.trim="$v.password_confirmation.$model" type="password" placeholder="Confirm password" name="confirm_password">
+              <input v-else v-model.trim="$v.password_confirmation.$model" :class="{ 'inputError':$v.password_confirmation.$error ,'inputSuccess':!$v.password_confirmation.$invalid }" type="password" placeholder="Confirm password" name="confirm_password">
+              <div>
+                <span class="ErrorText" v-if="!$v.password_confirmation.minLength"> password must have at least {{$v.password_confirmation.$params.minLength.min}} letters</span>
+                <span class="ErrorText" v-if="!$v.password_confirmation.maxLength"> password must have at most {{$v.password_confirmation.$params.maxLength.min}} letters</span>
+                <span class="ErrorText" v-if="!$v.password_confirmation.sameAsPassword">Passwords must be identical</span>
               </div>
             </div>
           </div>
@@ -40,26 +51,29 @@
       </div>
     </div>
   </div>
+
 </template>
 
 <script>
 import NavBar from "@/components/TopBar/NavBar";
-import {maxLength, minLength, required} from "vuelidate/lib/validators";
+import {maxLength, minLength, required, sameAs} from "vuelidate/lib/validators";
 // import axios from "axios";
 export default {
-  name: "ForgetPassword",
+  name: "ChangePasswordPage",
   components:{
     NavBar,
   },
   data() {
     return {
-      email: '',
+      password: '',
+      password_confirmation: '',
       submitStatus: null,
       error:null
     }
   },
   validations:{
-    email:{required, minLength:minLength(4), maxLength:maxLength(70)},
+    password:{required, minLength:minLength(6), maxLength:maxLength(60)},
+    password_confirmation:{required, minLength:minLength(6), maxLength:maxLength(60),sameAsPassword: sameAs('password')}
   },
   methods:{
     async checkForm () {
@@ -74,36 +88,32 @@ export default {
         this.submitStatus = 'PENDING'
         setTimeout(() => {
           this.submitStatus = 'OK'
-        }, 200);
+        }, 250);
         setTimeout(() => {
           this.submitStatus = null
-        }, 3000);
+        }, 2000);
 
         try {
-          // const response  = await axios.post('login-api',{
-          //   email     : this.email,
-          //   password  : this.password
-          // });
-          //
-          // localStorage.setItem('token' , response.data.token);
-          // await this.$store.dispatch('user', response.data);
-          this.$router.push('/ChangePassword');
+        // await axios.post('register-api',{
+        //   name  : this.name,
+        //   email     : this.email,
+        //   password  : this.password,
+        //   password_confirmation : this.password_confirmation
+        // });
+        //
+
+        this.$router.push('/login');
 
         }catch (e) {
-          this.error = 'Invalid Email/Password'
+          this.error = 'Invalid Password'
         }
-
-
       }
     },
-
   }
 }
 </script>
 
-
 <style scoped>
-
 .SuccessText{
   color: #0b4712;
   font-size: 16px;
@@ -129,7 +139,7 @@ export default {
   -webkit-transform: translate(-50%, -50%);
   transform: translate(-50%, -50%);
   text-align: center;
-  width: 400px;
+  width: 425px;
   background: linear-gradient(103.72deg, #459ff470 0%, #68dfa67c 105.3%);
   background-repeat: no-repeat;
   background-size: cover;
@@ -144,7 +154,7 @@ export default {
 .content-body h2 {
   text-align: center;
   padding: 10px 25px;
-  font-size: 30px;
+  font-size: 22px;
   color: white;
   position: relative;
   width: -webkit-max-content;
@@ -264,7 +274,7 @@ export default {
   font-size: 16px;
 }
 
-.content-body form .input-group input[type=email] {
+.content-body form .input-group input[type=password] {
   border-radius: 30px;
   padding: 8px 20px;
   margin: auto 15px;
@@ -275,7 +285,7 @@ export default {
 
 .content-body form .input-group p {
   text-align: justify;
-  font-size: 15px;
+  font-size: 18px;
   color: white;
   padding: 5px 12px;
 }
@@ -328,7 +338,7 @@ export default {
   color: white;
 }
 
-.content-body input[type=email], .content-body button {
+.content-body input[type=password], .content-body button {
   outline: none;
   border: none;
 }

@@ -9,6 +9,7 @@ import ForgetPassword from "@/components/ForgetPassword";
 import main from "@/components/MainPage/main";
 
 import store from "@/vuex";
+import ChangePasswordPage from "@/components/ChangePasswordPage";
 
 Vue.use(Router)
 
@@ -26,6 +27,7 @@ export default new Router({
         },
         {path: '/register' , name: SignUpPage, component: SignUpPage},
         {path: '/forgetPassword' , name: ForgetPassword , component: ForgetPassword},
+        {path: '/ChangePassword' , name: ChangePasswordPage , component: ChangePasswordPage},
         {
             path: '/mainPage',
             component:  main,

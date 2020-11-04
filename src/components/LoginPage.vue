@@ -11,8 +11,8 @@
               <input v-if="!submitStatus" :class="{ }" v-model.trim="$v.email.$model" type="email" placeholder="Enter Your E-Mail" name="email"  class="email">
               <input v-else-if="submitStatus" v-model.trim="$v.email.$model" :class="{ 'inputError':$v.email.$error ,'inputSuccess':!$v.email.$invalid }" type="email" placeholder="Enter Your E-Mail" name="email" id="email" class="email">
               <div>
-                <span class="ErrorText" v-if="!$v.email.minLength"> Name must have at least {{$v.email.$params.minLength.min}} letters</span>
-                <span class="ErrorText" v-if="!$v.email.maxLength"> Name must have at most {{$v.email.$params.maxLength.min}} letters</span>
+                <span class="ErrorText" v-if="!$v.email.minLength"> E-mail must have at least {{$v.email.$params.minLength.min}} letters</span>
+                <span class="ErrorText" v-if="!$v.email.maxLength"> E-mail must have at most {{$v.email.$params.maxLength.min}} letters</span>
               </div>
             </div>
             <div class="input-group ">
