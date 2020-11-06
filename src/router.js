@@ -23,34 +23,76 @@ export default new Router({
             path: '/login' ,
             name : "LoginPage" ,
             component: LoginPage,
+            // already be login 
             beforeEnter: (to, from, next)=>{
-                if (store.getters['user']){
-                    return next({
-                        name:"SignUpPage"
-                    })
+                if (localStorage.getItem('token') != null){
+                    if (!store.getters['user']){
+                        return next({
+                            name:"WelcomePage"
+                        })
+                    }
                 }
+
                 next()
             }
 
         },
-        {path: '/register' , name: "SignUpPage", component: SignUpPage},
+        {
+            path: '/register' ,
+            name: "SignUpPage",
+            component: SignUpPage,
+            // already be login
+            beforeEnter: (to, from, next)=>{
+                if (localStorage.getItem('token') != null){
+                    if (!store.getters['user']){
+                        return next({
+                            name:"WelcomePage"
+                        })
+                    }
+                }
+
+                next()
+            }
+        },
         {
             path: '/forgetPassword' ,
             name: "ForgetPassword" ,
             component: ForgetPassword,
+            // already be login
             beforeEnter: (to, from, next)=>{
-                if (store.getters['user']){
-                    return next({
-                        name:"SignUpPage"
-                    })
+                if (localStorage.getItem('token') != null){
+                    if (!store.getters['user']){
+                        return next({
+                            name:"WelcomePage"
+                        })
+                    }
                 }
+
                 next()
-            }},
-        {path: '/ChangePassword' , name: "ChangePasswordPage" , component: ChangePasswordPage},
+            }
+        },
+        {
+            path: '/ChangePassword' ,
+            name: "ChangePasswordPage" ,
+            component: ChangePasswordPage,
+            // already be login
+            beforeEnter: (to, from, next)=>{
+                if (localStorage.getItem('token') != null){
+                    if (!store.getters['user']){
+                        return next({
+                            name:"WelcomePage"
+                        })
+                    }
+                }
+
+                next()
+            }
+        },
         {
             path: '/mainPage',
             name: "mainPage" ,
             component:  main,
+            // must be login
             beforeEnter: (to, from, next)=>{
                 if (localStorage.getItem('token') == null){
                     if (!store.getters['user']){
