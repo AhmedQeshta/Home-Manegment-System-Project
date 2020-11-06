@@ -118,8 +118,10 @@ export default {
           if (re.data.errors == true){
             this.error = re.data.messages.email[0];
           }else {
-            this.$router.push('/login');
             this.error =null;
+            localStorage.setItem('token' , re.data.token);
+            await this.$store.dispatch('user', re.data);
+            this.$router.push('/mainPage');
           }
         }catch (e) {
           this.error = 'Error'
