@@ -23,20 +23,43 @@ export default new Router({
             path: '/login' ,
             name : "LoginPage" ,
             component: LoginPage,
+            beforeEnter: (to, from, next)=>{
+                if (store.getters['user']){
+                    return next({
+                        name:"SignUpPage"
+                    })
+                }
+                next()
+            }
 
         },
         {path: '/register' , name: "SignUpPage", component: SignUpPage},
-        {path: '/forgetPassword' , name: "ForgetPassword" , component: ForgetPassword},
+        {
+            path: '/forgetPassword' ,
+            name: "ForgetPassword" ,
+            component: ForgetPassword,
+            beforeEnter: (to, from, next)=>{
+                if (store.getters['user']){
+                    return next({
+                        name:"SignUpPage"
+                    })
+                }
+                next()
+            }},
         {path: '/ChangePassword' , name: "ChangePasswordPage" , component: ChangePasswordPage},
         {
             path: '/mainPage',
+            name: "mainPage" ,
             component:  main,
             beforeEnter: (to, from, next)=>{
-                if (!store.getters['user']){
-                    return next({
-                        name:"LoginPage"
-                    })
+                if (localStorage.getItem('token') == null){
+                    if (!store.getters['user']){
+                        return next({
+                            name:"LoginPage"
+                        })
+                    }
                 }
+
                 next()
             }
         },

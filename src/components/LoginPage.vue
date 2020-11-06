@@ -95,6 +95,7 @@ export default {
             password  : this.password
           });
           localStorage.setItem('token' , response.data.token);
+          localStorage.setItem('user' , response.data.user);
           await this.$store.dispatch('user', response.data);
           this.$router.push('/mainPage');
 

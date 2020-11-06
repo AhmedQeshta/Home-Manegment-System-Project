@@ -81,7 +81,7 @@ export default {
       password: '',
       password_confirmation: '',
       submitStatus: null,
-      error:null
+      error:null,
     }
   },
   validations:{
@@ -120,6 +120,7 @@ export default {
           }else {
             this.error =null;
             localStorage.setItem('token' , re.data.token);
+            localStorage.setItem('user' , re.data.user);
             await this.$store.dispatch('user', re.data);
             this.$router.push('/mainPage');
           }
