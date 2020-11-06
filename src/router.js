@@ -16,25 +16,25 @@ Vue.use(Router)
 export default new Router({
     mode : 'history',
     routes:[
-        {path: '/' , name:WelcomePage, component: WelcomePage},
-        {path: '/aboutUs' ,name: AboutUsPage , component: AboutUsPage},
-        {path: '/contactUs' , name: ContactUsPage , component: ContactUsPage},
+        {path: '/' , name:"WelcomePage", component: WelcomePage},
+        {path: '/aboutUs' ,name: "AboutUsPage" , component: AboutUsPage},
+        {path: '/contactUs' , name: "ContactUsPage" , component: ContactUsPage},
         {
             path: '/login' ,
-            name : LoginPage ,
+            name : "LoginPage" ,
             component: LoginPage,
 
         },
-        {path: '/register' , name: SignUpPage, component: SignUpPage},
-        {path: '/forgetPassword' , name: ForgetPassword , component: ForgetPassword},
-        {path: '/ChangePassword' , name: ChangePasswordPage , component: ChangePasswordPage},
+        {path: '/register' , name: "SignUpPage", component: SignUpPage},
+        {path: '/forgetPassword' , name: "ForgetPassword" , component: ForgetPassword},
+        {path: '/ChangePassword' , name: "ChangePasswordPage" , component: ChangePasswordPage},
         {
             path: '/mainPage',
             component:  main,
             beforeEnter: (to, from, next)=>{
                 if (!store.getters['user']){
                     return next({
-                        path: '/login'
+                        name:"LoginPage"
                     })
                 }
                 next()

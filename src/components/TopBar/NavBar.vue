@@ -66,7 +66,8 @@ export default {
   name: "Nav-Bar",
   data(){
     return{
-      show: false
+      show: false,
+
     }
   },
   methods:{

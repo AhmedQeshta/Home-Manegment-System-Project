@@ -90,11 +90,10 @@ export default {
         }, 3000);
 
         try {
-          const response  = await axios.post('login-api',{
+          let response  = await axios.post('login-api',{
             email     : this.email,
             password  : this.password
           });
-
           localStorage.setItem('token' , response.data.token);
           await this.$store.dispatch('user', response.data);
           this.$router.push('/mainPage');

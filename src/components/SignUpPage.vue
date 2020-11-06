@@ -22,6 +22,9 @@
               <div>
                 <span class="ErrorText" v-if="!$v.email.minLength"> Name must have at least {{$v.email.$params.minLength.min}} letters</span>
                 <span class="ErrorText" v-if="!$v.email.maxLength"> Name must have at most {{$v.email.$params.maxLength.min}} letters</span>
+                <div v-if="error">
+                  <span class="ErrorText"> {{error}}</span>
+                </div>
               </div>
             </div>
             <div class="input-group ">
@@ -46,7 +49,7 @@
           </div>
 
           <div v-if="submitStatus" >
-            <p class="SuccessText" v-if="submitStatus === 'OK'">Thanks for your submission!</p>
+            <p class="SuccessText" v-if="submitStatus === 'OK'&& !error">Thanks for your submission!</p>
             <p class="ErrorText" v-if="submitStatus === 'ERROR'">Please fill the form correctly.</p>
             <p class="PENDINGText" v-if="submitStatus === 'PENDING'">Sending...</p>
           </div>
@@ -71,22 +74,23 @@ export default {
   components:{
       NavBar,
   },
-
   data() {
     return {
       name: '',
       email: '',
       password: '',
       password_confirmation: '',
-      submitStatus: null
+      submitStatus: null,
+      error:null
     }
   },
   validations:{
     name:{required, minLength:minLength(3), maxLength:maxLength(50)},
     email:{required, minLength:minLength(4), maxLength:maxLength(70)},
     password:{required, minLength:minLength(6), maxLength:maxLength(60)},
-    password_confirmation:{required, minLength:minLength(6), maxLength:maxLength(60),sameAsPassword: sameAs('password')}
-  },
+    password_confirmation:{required, minLength:minLength(6), maxLength:maxLength(60),sameAsPassword: sameAs('password')},
+
+    },
   methods:{
     async checkForm () {
       this.$v.$touch()
@@ -104,16 +108,23 @@ export default {
         setTimeout(() => {
           this.submitStatus = null
         }, 2000);
+        try {
+          const re = await axios.post('register-api',{
+            name  : this.name,
+            email     : this.email,
+            password  : this.password,
+            password_confirmation : this.password_confirmation
+          });
+          if (re.data.errors == true){
+            this.error = re.data.messages.email[0];
+          }else {
+            this.$router.push('/login');
+            this.error =null;
+          }
+        }catch (e) {
+          this.error = 'Error'
+        }
 
-
-        await axios.post('register-api',{
-          name  : this.name,
-          email     : this.email,
-          password  : this.password,
-          password_confirmation : this.password_confirmation
-        });
-
-        this.$router.push('/login');
 
       }
     },
@@ -139,6 +150,7 @@ export default {
 }
 
 .ErrorText{
+  text-align: center;
   color: #831e7d;
   font-weight: bold;
 }

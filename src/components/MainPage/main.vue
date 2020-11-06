@@ -3,6 +3,7 @@
     <h2>main</h2>
     <router-link to="/"> Home </router-link>
   </div>
+
 </template>
 
 <script>
