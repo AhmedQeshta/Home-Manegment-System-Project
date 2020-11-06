@@ -3,12 +3,14 @@ import Vuex from 'vuex'
 
 Vue.use(Vuex);
 
-const state = {
-    user :null
-};
+// const state = {
+//     user :null
+// };
 
 const store = new Vuex.Store({
-    state,
+    state:{
+        user :null
+    },
     getters:{
         user :  (state) =>{
             return state.user;
@@ -16,7 +18,7 @@ const store = new Vuex.Store({
     },
     actions:{
         user(context,user){
-            context.commit('user' , user  );
+            context.commit('user' , user );
         }
     },
     mutations:{

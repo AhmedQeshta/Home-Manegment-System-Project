@@ -35,7 +35,9 @@
             </div>
           </div>
 
-          <div class="Group2">
+          <scale-loader v-show="Loader" :loading="loading" :color="color" :height="height" :width="width"></scale-loader>
+
+          <div v-show="!Loader" class="Group2">
             <div class="btn-group">
               <button type="submit">Login</button>
             </div>
@@ -53,17 +55,20 @@
 import { required, minLength,maxLength} from 'vuelidate/lib/validators'
 import axios from "axios";
 import NavBar from "@/components/TopBar/NavBar";
+import ScaleLoader from 'vue-spinner/src/ScaleLoader.vue'
 export default {
   name: "LoginPage",
   components:{
       NavBar,
+      ScaleLoader,
     },
   data() {
     return {
       email: '',
       password: '',
       submitStatus: null,
-      error:null
+      error:null,
+      Loader:false,
     }
   },
   validations:{
@@ -75,6 +80,10 @@ export default {
     async checkForm () {
       this.$v.$touch()
       if (this.$v.$invalid) {
+        this.Loader = true ;
+        setTimeout(() => {
+          this.Loader = false ;
+        }, 3000);
         this.submitStatus = 'ERROR';
         setTimeout(() => {
           this.submitStatus = null
@@ -88,6 +97,10 @@ export default {
         setTimeout(() => {
           this.submitStatus = null
         }, 3000);
+        this.Loader = true ;
+        setTimeout(() => {
+          this.Loader = false ;
+        }, 3500);
 
         try {
           let response  = await axios.post('login-api',{
@@ -98,9 +111,14 @@ export default {
           localStorage.setItem('user' , response.data.user);
           await this.$store.dispatch('user', response.data);
           this.$router.push('/mainPage');
+          this.Loader = false ;
 
         }catch (e) {
             this.error = 'Invalid Email/Password'
+            this.Loader = true ;
+            setTimeout(() => {
+              this.Loader = false ;
+            }, 3500);
         }
 
 

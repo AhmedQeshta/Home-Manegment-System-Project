@@ -53,8 +53,9 @@
             <p class="ErrorText" v-if="submitStatus === 'ERROR'">Please fill the form correctly.</p>
             <p class="PENDINGText" v-if="submitStatus === 'PENDING'">Sending...</p>
           </div>
+          <scale-loader v-show="Loader" :loading="loading" :color="color" :height="height" :width="width"></scale-loader>
 
-          <div class="Group2">
+          <div v-show="!Loader" class="Group2">
             <div class="btn-group">
               <button type="submit">Regester</button>
             </div>
@@ -69,10 +70,12 @@
 import { required, minLength,maxLength,sameAs} from 'vuelidate/lib/validators'
 import axios from 'axios'
 import NavBar from "@/components/TopBar/NavBar";
+import ScaleLoader from 'vue-spinner/src/ScaleLoader.vue'
 export default {
   name: "SignUpPage",
   components:{
       NavBar,
+      ScaleLoader,
   },
   data() {
     return {
@@ -82,6 +85,7 @@ export default {
       password_confirmation: '',
       submitStatus: null,
       error:null,
+      Loader:false,
     }
   },
   validations:{
@@ -95,11 +99,18 @@ export default {
     async checkForm () {
       this.$v.$touch()
       if (this.$v.$invalid) {
+        this.Loader = true ;
+        setTimeout(() => {
+          this.Loader = false ;
+        }, 3000);
         this.submitStatus = 'ERROR';
         setTimeout(() => {
           this.submitStatus = null
         }, 3000);
+
+
       } else {
+        this.Loader = true ;
         // do your submit logic here
         this.submitStatus = 'PENDING'
         setTimeout(() => {
@@ -108,6 +119,9 @@ export default {
         setTimeout(() => {
           this.submitStatus = null
         }, 2000);
+        setTimeout(() => {
+          this.Loader = false ;
+        }, 3500);
         try {
           const re = await axios.post('register-api',{
             name  : this.name,
@@ -119,10 +133,12 @@ export default {
             this.error = re.data.messages.email[0];
           }else {
             this.error =null;
+
             localStorage.setItem('token' , re.data.token);
             localStorage.setItem('user' , re.data.user);
             await this.$store.dispatch('user', re.data);
             this.$router.push('/mainPage');
+            this.Loader =false;
           }
         }catch (e) {
           this.error = 'Error'
