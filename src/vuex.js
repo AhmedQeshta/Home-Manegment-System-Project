@@ -1,16 +1,15 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
-
+import VuexPersistence from 'vuex-persist'
 Vue.use(Vuex);
 
-// const state = {
-//     user :null
-// };
+const state = {
+    user : null
+};
 
 const store = new Vuex.Store({
-    state:{
-        user :null
-    },
+    state,
+    plugins: [new VuexPersistence().plugin],
     getters:{
         user :  (state) =>{
             return state.user;

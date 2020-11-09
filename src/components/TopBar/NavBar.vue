@@ -22,11 +22,11 @@
           <li><router-link to="/contactUs">Contacts</router-link></li>
         </ul>
 
-        <ul v-if="user || token">
+        <ul v-if="user">
           <li class="siginUp"><a href="javascript:void(0)" @click.prevent="handleClick">Log Out</a></li>
           <li><router-link to="/mainPage" >Dashboard</router-link></li>
         </ul>
-        <ul v-if="!user && !token">
+        <ul v-if="!user">
           <li><router-link to="/login">Login</router-link></li>
           <li class="siginUp"><router-link to="/register">Sign Up</router-link></li>
         </ul>
@@ -48,11 +48,11 @@
           <li><router-link to="/aboutUs">About</router-link></li>
           <li><router-link to="/contactUs">Contacts</router-link></li>
         </ul>
-        <ul v-if="user || token">
+        <ul v-if="user ">
           <li class="siginUp"><a href="javascript:void(0)" @click.prevent="handleClick">Log Out</a></li>
           <li><router-link to="/mainPage" >Dashboard</router-link></li>
         </ul>
-        <ul v-if="!user && !token">
+        <ul v-if="!user ">
           <li><router-link to="/login">Login</router-link></li>
           <li class="siginUp"><router-link to="/register">Sign Up</router-link></li>
         </ul>
@@ -68,17 +68,17 @@ export default {
   data(){
     return{
       show: false,
-      token :false
+      // token :false
     }
   },
-  mounted() {
-    let token = localStorage.getItem('token');
-    if ( token == null){
-      this.token = false
-    }else {
-      this.token = true
-    }
-  },
+  // mounted() {
+  //   let token = localStorage.getItem('token');
+  //   if ( token == null){
+  //     this.token = false
+  //   }else {
+  //     this.token = true
+  //   }
+  // },
   methods:{
     handleClick(){
       localStorage.removeItem('token');

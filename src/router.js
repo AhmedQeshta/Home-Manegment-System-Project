@@ -25,13 +25,13 @@ export default new Router({
             component: LoginPage,
             // already be login 
             beforeEnter: (to, from, next)=>{
-                if (localStorage.getItem('token') != null){
-                    if (!store.getters['user']){
+                // if (localStorage.getItem('token') != null){
+                    if (store.getters['user']){
                         return next({
                             name:"WelcomePage"
                         })
                     }
-                }
+                // }
 
                 next()
             }
@@ -43,12 +43,10 @@ export default new Router({
             component: SignUpPage,
             // already be login
             beforeEnter: (to, from, next)=>{
-                if (localStorage.getItem('token') != null){
-                    if (!store.getters['user']){
-                        return next({
-                            name:"WelcomePage"
-                        })
-                    }
+                if (store.getters['user']){
+                    return next({
+                        name:"WelcomePage"
+                    })
                 }
 
                 next()
@@ -60,12 +58,10 @@ export default new Router({
             component: ForgetPassword,
             // already be login
             beforeEnter: (to, from, next)=>{
-                if (localStorage.getItem('token') != null){
-                    if (!store.getters['user']){
-                        return next({
-                            name:"WelcomePage"
-                        })
-                    }
+                if (store.getters['user']){
+                    return next({
+                        name:"WelcomePage"
+                    })
                 }
 
                 next()
@@ -77,12 +73,10 @@ export default new Router({
             component: ChangePasswordPage,
             // already be login
             beforeEnter: (to, from, next)=>{
-                if (localStorage.getItem('token') != null){
-                    if (!store.getters['user']){
-                        return next({
-                            name:"WelcomePage"
-                        })
-                    }
+                if (store.getters['user']){
+                    return next({
+                        name:"WelcomePage"
+                    })
                 }
 
                 next()
@@ -94,13 +88,13 @@ export default new Router({
             component:  main,
             // must be login
             beforeEnter: (to, from, next)=>{
-                if (localStorage.getItem('token') == null){
-                    if (!store.getters['user']){
-                        return next({
-                            name:"LoginPage"
-                        })
-                    }
+                // if (localStorage.getItem('token') == null){
+                if (!store.getters['user']){
+                    return next({
+                        name:"LoginPage"
+                    })
                 }
+                // }
 
                 next()
             }

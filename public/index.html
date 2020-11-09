@@ -14,22 +14,18 @@
               --white_color:  white ;
           }
 
-          body {
+          .body {
               padding: 0px;
               margin: 0px;
-              -webkit-user-select: none;
-              -moz-user-select: none;
-              -ms-user-select: none;
-              user-select: none;
-              /*overflow: hidden;*/
-              position: relative;
+              overflow: auto;
+              /*position: relative;*/
               background: linear-gradient(103.72deg, #45A0F4 0%, #68DFA6 105.3%);
-              background-repeat: no-repeat;
-              background-size: cover;
-              background-position: center;
-              -webkit-box-sizing: border-box;
-              box-sizing: border-box;
 
+              /*-webkit-box-sizing: border-box;*/
+              /*box-sizing: border-box;*/
+              display: flex;
+              flex-direction: column;
+              min-height: 100vh;
           }
 
       </style>
@@ -38,7 +34,7 @@
       <link href="http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700&subset=all" rel="stylesheet" type="text/css" />
   <!-- END HEAD -->
   </head>
-  <body>
+  <body class="body">
   <!--  -->
     <noscript>
       <strong>We're sorry but <%= htmlWebpackPlugin.options.title %> doesn't work properly without JavaScript enabled. Please enable it to continue.</strong>
