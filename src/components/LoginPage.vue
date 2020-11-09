@@ -62,6 +62,32 @@ export default {
       NavBar,
       ScaleLoader,
     },
+  props: {
+    loading: {
+      type: Boolean,
+      default: true
+    },
+    color: {
+      type: String,
+      default: '#d8e9ea'
+    },
+    height: {
+      type: String,
+      default: '35px'
+    },
+    width: {
+      type: String,
+      default: '4px'
+    },
+    margin: {
+      type: String,
+      default: '2px'
+    },
+    radius: {
+      type: String,
+      default: '2px'
+    }
+  },
   data() {
     return {
       email: '',
