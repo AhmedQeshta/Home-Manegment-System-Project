@@ -7,7 +7,7 @@
     <div>
           <span>
               <img src="@/assets/img/man.svg" title="User Image" alt="User Image">
-              <label title="User Name">Jon Doe</label>
+              <label title="User Name">{{GetUser.name}}</label>
           </span>
     </div>
   </nav>
@@ -15,8 +15,12 @@
 </template>
 
 <script>
+import {mapGetters} from "vuex";
 export default {
-name: "TopNav"
+name: "TopNav",
+  computed:{
+    ...mapGetters(['GetUser']),
+  },
 }
 </script>
 

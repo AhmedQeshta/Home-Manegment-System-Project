@@ -13,6 +13,9 @@ const store = new Vuex.Store({
     getters:{
         user :  (state) =>{
             return state.user;
+        },
+        GetUser :  (state) =>{
+            return state.user.user;
         }
     },
     actions:{

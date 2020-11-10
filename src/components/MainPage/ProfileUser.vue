@@ -10,6 +10,23 @@
         <!-- section change just it  -->
         <div class="All-Drivers">
           <h2>ProFile User Page</h2>
+          <div>
+              <form action="#" @submit.prevent="checkForm">
+              <label >Name</label>
+              <input type="text" v-model.trim="name">
+              <br>
+              <hr>
+              <label >Email</label>
+              <input type="text" v-model="email">
+
+              <div class="Group2">
+                <div class="btn-group">
+                  <button type="submit">update</button>
+                </div>
+              </div>
+            </form>
+          </div>
+
         </div>
       </div>
       <!-- End -->
@@ -20,11 +37,38 @@
 <script>
 import TopNavBar from "@/components/MainPage/Nav/TopNav";
 import LeftNavBar from "@/components/MainPage/Nav/LeftNav";
+import {mapGetters} from "vuex";
+import axios from "axios";
 export default {
-name: "ProfileUser",
+  name: "ProfileUser",
   components:{
     TopNavBar,
     LeftNavBar,
+  },
+  data(){
+    return{
+      name: this.$store.getters.GetUser.name ,
+      email: this.$store.getters.GetUser.email ,
+    }
+  },
+  methods:{
+    async checkForm () {
+      try {
+        let response  = await axios.patch('update',{
+          name     : this.name,
+          email  : this.email
+        });
+        await this.$store.dispatch('user', response.data);
+      }catch (e) {
+        this.error = 'Error'
+      }
+
+    },
+  },
+  computed:{
+    ...mapGetters(['GetUser']),
+    ...mapGetters(['user']),
+
   },
 }
 </script>
@@ -204,6 +248,7 @@ section .body-content .All-Drivers {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  flex-direction: column;
   -ms-flex-wrap: wrap;
   flex-wrap: wrap;
   position: relative;
