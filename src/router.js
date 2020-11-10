@@ -10,6 +10,7 @@ import main from "@/components/MainPage/main";
 
 import store from "@/vuex";
 import ChangePasswordPage from "@/components/ChangePasswordPage";
+import ProfileUser from "@/components/MainPage/ProfileUser";
 
 Vue.use(Router)
 
@@ -86,6 +87,23 @@ export default new Router({
             path: '/mainPage',
             name: "mainPage" ,
             component:  main,
+            // must be login
+            beforeEnter: (to, from, next)=>{
+                // if (localStorage.getItem('token') == null){
+                if (!store.getters['user']){
+                    return next({
+                        name:"LoginPage"
+                    })
+                }
+                // }
+
+                next()
+            }
+        },
+        {
+            path: '/mainPage/Profile/user',
+            name: "ProfileUser" ,
+            component:  ProfileUser,
             // must be login
             beforeEnter: (to, from, next)=>{
                 // if (localStorage.getItem('token') == null){

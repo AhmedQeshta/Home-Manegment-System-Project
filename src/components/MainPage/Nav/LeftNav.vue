@@ -1,51 +1,33 @@
 <template>
-  <div class="body">
-    <!-- top nav bar  -->
-      <TopNavBar/>
-    <!--  end top nav bar    -->
-    <section>
-      <LeftNavBar/>
-      <!-- body section -->
-      <div class="body-content">
-        <!-- section change just it  -->
-        <div class="All-Drivers">
-          <!-- all device-->
-          <div class="device">
-            <a href="">
-              <section>
-                <img src="@/assets/img/Group 66.png" alt="">
-                <p>Device Name 1</p>
-              </section>
-            </a>
-          </div>
-          <!-- add Device-->
-          <div class="device addDevice">
-            <a href="">
-              <section>
-                <img class="addimage" src="@/assets/img/Group 70.png" alt="">
-                <p>Add Device</p>
-              </section>
-            </a>
-          </div>
-        </div>
-      </div>
-      <!-- End -->
-    </section>
+  <div class="Left-NavBar">
+    <div>
+      <p>DB</p>
+    </div>
+    <ul>
+      <li><router-link to="/mainPage">Main</router-link></li>
+      <li><router-link to="/mainPage/Profile/user" >Profile</router-link></li>
+
+      <li><a title="Log Out" href="javascript:void(0)" @click.prevent="handleClick" class="logout"><img src="@/assets/img/exit.png" alt=""></a></li>
+    </ul>
   </div>
 </template>
 
 <script>
-// import axios from "axios";
+import {mapGetters} from "vuex";
 
-import TopNavBar from "@/components/MainPage/Nav/TopNav";
-import LeftNavBar from "@/components/MainPage/Nav/LeftNav";
 export default {
-  name: "main",
-  components:{
-    TopNavBar,
-    LeftNavBar,
+  name: "LeftNav",
+  methods:{
+    handleClick(){
+      localStorage.removeItem('token');
+      localStorage.removeItem('user');
+      this.$store.dispatch('user' , null);
+      this.$router.push('/login');
+    }
   },
-
+  computed:{
+    ...mapGetters(['user'])
+  }
 }
 </script>
 

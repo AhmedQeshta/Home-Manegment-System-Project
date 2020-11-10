@@ -1,7 +1,7 @@
 <template>
   <div class="body">
     <!-- top nav bar  -->
-      <TopNavBar/>
+    <TopNavBar/>
     <!--  end top nav bar    -->
     <section>
       <LeftNavBar/>
@@ -9,24 +9,7 @@
       <div class="body-content">
         <!-- section change just it  -->
         <div class="All-Drivers">
-          <!-- all device-->
-          <div class="device">
-            <a href="">
-              <section>
-                <img src="@/assets/img/Group 66.png" alt="">
-                <p>Device Name 1</p>
-              </section>
-            </a>
-          </div>
-          <!-- add Device-->
-          <div class="device addDevice">
-            <a href="">
-              <section>
-                <img class="addimage" src="@/assets/img/Group 70.png" alt="">
-                <p>Add Device</p>
-              </section>
-            </a>
-          </div>
+          <h2>ProFile User Page</h2>
         </div>
       </div>
       <!-- End -->
@@ -35,17 +18,14 @@
 </template>
 
 <script>
-// import axios from "axios";
-
 import TopNavBar from "@/components/MainPage/Nav/TopNav";
 import LeftNavBar from "@/components/MainPage/Nav/LeftNav";
 export default {
-  name: "main",
+name: "ProfileUser",
   components:{
     TopNavBar,
     LeftNavBar,
   },
-
 }
 </script>
 
@@ -278,74 +258,74 @@ section .body-content .All-Drivers .device .addimage {
 }
 
 /* Extra small devices (phones, 600px and down) */
-/*@media only screen and (max-width: 600px) {*/
-/*  section {*/
-/*    position: relative;*/
-/*    top: 60px;*/
-/*    display: -webkit-box;*/
-/*    display: -ms-flexbox;*/
-/*    display: flex;*/
-/*  }*/
-/*  section .body-content {*/
-/*    position: relative;*/
-/*    left: 0px;*/
-/*    width: 90%;*/
-/*    height: 90vh;*/
-/*    margin: 0px 90px;*/
-/*  }*/
-/*  section .body-content .All-Drivers {*/
-/*    display: -webkit-box;*/
-/*    display: -ms-flexbox;*/
-/*    display: flex;*/
-/*    position: relative;*/
-/*    -webkit-box-orient: vertical;*/
-/*    -webkit-box-direction: normal;*/
-/*    -ms-flex-direction: column;*/
-/*    flex-direction: column;*/
-/*    margin: 10px 100px;*/
-/*  }*/
-/*  section .body-content .All-Drivers .device {*/
-/*    text-align: center;*/
-/*    width: 200px;*/
-/*    margin: 10px auto;*/
-/*  }*/
-/*  section .body-content .All-Drivers .device a:hover {*/
-/*    text-decoration: none;*/
-/*    color: white;*/
-/*  }*/
-/*  section .body-content .All-Drivers .device section {*/
-/*    display: -webkit-box;*/
-/*    display: -ms-flexbox;*/
-/*    display: flex;*/
-/*    -webkit-box-orient: vertical;*/
-/*    -webkit-box-direction: normal;*/
-/*    -ms-flex-direction: column;*/
-/*    flex-direction: column;*/
-/*    border: 2px dashed #A5A5A5;*/
-/*    border-radius: 15px;*/
-/*    padding: 15px;*/
-/*    -webkit-box-pack: center;*/
-/*    -ms-flex-pack: center;*/
-/*    justify-content: center;*/
-/*    -webkit-box-align: center;*/
-/*    -ms-flex-align: center;*/
-/*    align-items: center;*/
-/*  }*/
-/*  section .body-content .All-Drivers .device section img {*/
-/*    width: 100px;*/
-/*    height: 100px;*/
-/*  }*/
-/*  section .body-content .All-Drivers .device section p {*/
-/*    padding: 5px;*/
-/*    background: #A5A5A5;*/
-/*    border-radius: 5px;*/
-/*    margin: 15px auto 0px auto;*/
-/*    font-size: 16px;*/
-/*  }*/
-/*  section .body-content .All-Drivers .device .addimage {*/
-/*    width: 115px;*/
-/*    height: 100px;*/
-/*  }*/
-/*}*/
+@media only screen and (max-width: 600px) {
+  section {
+    position: relative;
+    top: 60px;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+  }
+  section .body-content {
+    position: relative;
+    left: 0px;
+    width: 90%;
+    height: 90vh;
+    margin: 0px 90px;
+  }
+  section .body-content .All-Drivers {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    position: relative;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    margin: 10px 100px;
+  }
+  section .body-content .All-Drivers .device {
+    text-align: center;
+    width: 200px;
+    margin: 10px auto;
+  }
+  section .body-content .All-Drivers .device a:hover {
+    text-decoration: none;
+    color: white;
+  }
+  section .body-content .All-Drivers .device section {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    border: 2px dashed #A5A5A5;
+    border-radius: 15px;
+    padding: 15px;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+  }
+  section .body-content .All-Drivers .device section img {
+    width: 100px;
+    height: 100px;
+  }
+  section .body-content .All-Drivers .device section p {
+    padding: 5px;
+    background: #A5A5A5;
+    border-radius: 5px;
+    margin: 15px auto 0px auto;
+    font-size: 16px;
+  }
+  section .body-content .All-Drivers .device .addimage {
+    width: 115px;
+    height: 100px;
+  }
+}
 /*# sourceMappingURL=style.css.map */
 </style>

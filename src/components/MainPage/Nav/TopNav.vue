@@ -1,51 +1,22 @@
 <template>
-  <div class="body">
-    <!-- top nav bar  -->
-      <TopNavBar/>
-    <!--  end top nav bar    -->
-    <section>
-      <LeftNavBar/>
-      <!-- body section -->
-      <div class="body-content">
-        <!-- section change just it  -->
-        <div class="All-Drivers">
-          <!-- all device-->
-          <div class="device">
-            <a href="">
-              <section>
-                <img src="@/assets/img/Group 66.png" alt="">
-                <p>Device Name 1</p>
-              </section>
-            </a>
-          </div>
-          <!-- add Device-->
-          <div class="device addDevice">
-            <a href="">
-              <section>
-                <img class="addimage" src="@/assets/img/Group 70.png" alt="">
-                <p>Add Device</p>
-              </section>
-            </a>
-          </div>
-        </div>
-      </div>
-      <!-- End -->
-    </section>
-  </div>
+  <!-- top nav Start -->
+  <nav>
+    <div>
+      <label>DashBord</label>
+    </div>
+    <div>
+          <span>
+              <img src="@/assets/img/man.svg" title="User Image" alt="User Image">
+              <label title="User Name">Jon Doe</label>
+          </span>
+    </div>
+  </nav>
+  <!-- Top Nav End -->
 </template>
 
 <script>
-// import axios from "axios";
-
-import TopNavBar from "@/components/MainPage/Nav/TopNav";
-import LeftNavBar from "@/components/MainPage/Nav/LeftNav";
 export default {
-  name: "main",
-  components:{
-    TopNavBar,
-    LeftNavBar,
-  },
-
+name: "TopNav"
 }
 </script>
 
