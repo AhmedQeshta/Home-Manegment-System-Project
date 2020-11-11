@@ -6,7 +6,8 @@
     </div>
     <div>
           <span>
-              <img src="@/assets/img/man.svg" title="User Image" alt="User Image">
+              <img v-show="!GetUser.image" src="@/assets/img/man.svg" title="User Image" alt="User Image">
+              <img v-show="GetUser.image" :src="GetUser.image" title="User Image" alt="User Image">
               <label title="User Name">{{GetUser.name}}</label>
           </span>
     </div>
