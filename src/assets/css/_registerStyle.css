@@ -244,22 +244,13 @@ button:focus {
     border: none;
 }
 
-.inputError {
-    border: #c53c3c;
-    -webkit-box-shadow: 0px 1px 8px  #862929;
-    box-shadow: 0px 1px 8px  #862929;
-}
-
-.inputSuccess {
-    border: #48c53c;
-    -webkit-box-shadow: 0px 1px 8px  #298638;
-    box-shadow: 0px 1px 8px  #298638;
-}
 
 @media only screen and (max-width: 800px) {
-    body {
-        height: 100vh;
+    .content__body-R{
+        margin: -42px auto;
+        min-height: 100vh;
     }
+
     nav {
         display: -webkit-box;
         display: -ms-flexbox;

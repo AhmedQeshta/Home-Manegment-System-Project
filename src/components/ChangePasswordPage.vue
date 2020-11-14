@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="content__body-C">
     <NavBar/>
     <div class="body-changePassword">
       <div class="content__body-changePassword">

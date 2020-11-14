@@ -207,24 +207,11 @@
     border: none;
 }
 
-.inputError {
-    border: 6px solid #c53c3c;
-    -webkit-box-shadow: 0px 1px 8px  #862929;
-    box-shadow: 0px 2px 6px  #862929;
-}
-
-.inputSuccess {
-    border: 6px solid #48c53c;
-    -webkit-box-shadow: 0px 1px 8px  #298638;
-    box-shadow: 0px 2px 6px  #298638;
-}
-
-.ErrorText{
-    color: #831e7d;
-    font-weight: bold;
-}
 
 @media only screen and (max-width: 800px) {
+    .content__body-c{
+        margin-top: -50px;
+    }
     .content__body-contactUs {
         display: -webkit-box;
         display: -ms-flexbox;
@@ -241,7 +228,10 @@
         align-items: center;
         text-align: center;
         width: 100%;
-        margin: 0px;
+        margin: -120px auto;
+        min-height: 100vh;
+        overflow: hidden;
+
     }
     .content__body-contactUs h2 {
         text-align: center;
@@ -256,6 +246,7 @@
         -webkit-transition: ease-in-out 0.25s;
         transition: ease-in-out 0.25s;
         border-bottom: 3px solid white;
+
     }
     .content__body-contactUs form {
         display: -webkit-box;
@@ -269,6 +260,8 @@
         -ms-flex-pack: center;
         justify-content: center;
         text-align: center;
+        width: 90%;
+
     }
     .content__body-contactUs form .Group1 {
         display: -webkit-box;
@@ -295,12 +288,14 @@
         flex-direction: column;
         text-align: start;
         margin: 5px auto;
+        width: 90%;
     }
     .content__body-contactUs form .input-group label {
         padding: 0;
         font-family: Arial, Helvetica, sans-serif;
         color: #C9E6F5;
         font-size: 16px;
+
     }
     .content__body-contactUs form .input-group input[type=text], .content__body-contactUs form .input-group input[type=email] {
         border-radius: 30px;
@@ -309,6 +304,7 @@
         color: #5c5c5ce1;
         background: #C9E6F5;
         font-weight: bold;
+        width: 100%;
     }
     .content__body-contactUs form .input-group textarea {
         border-radius: 5px;
@@ -317,6 +313,7 @@
         color: #5c5c5ce1;
         background: #C9E6F5;
         font-weight: bold;
+        width: 100%;
     }
     .content__body-contactUs form .input-group ::-webkit-input-placeholder {
         color: #5c5c5c8f;
@@ -340,6 +337,7 @@
     }
     .content__body-contactUs form .btn-group {
         margin: 15px auto;
+
     }
     .content__body-contactUs form .btn-group button {
         background: #089EDE;

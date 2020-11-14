@@ -66,7 +66,9 @@
 
 
 @media only screen and (max-width: 800px) {
-
+    .content__body-w{
+        margin-top: -50px;
+    }
     .content__body-welcome {
         display: -webkit-box;
         display: -ms-flexbox;
@@ -83,7 +85,9 @@
         align-items: center;
         text-align: center;
         width: 100%;
-        margin: 0px;
+        margin: -120px auto;
+        min-height: 100vh;
+
     }
     .content__body-welcome :nth-child(1) {
         -ms-flex-preferred-size: 100%;

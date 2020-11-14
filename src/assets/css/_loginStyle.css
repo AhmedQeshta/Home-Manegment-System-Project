@@ -7,6 +7,7 @@
 }
 
 
+
 .content__body-login {
     position: absolute;
     top: 50%;
@@ -235,13 +236,19 @@
 
 @media only screen and (max-width: 800px) {
 
+
+    .content__body-L{
+        margin: -42px auto;
+        min-height: 100vh;
+    }
+
     .content__body-login {
         position: absolute;
         top: 50%;
         left: 50%;
         transform: translate(-50%,-50%);
         text-align: center;
-        width: 500px;
+        width: 90%;
         margin: 10px auto;
         background: linear-gradient(103.72deg, #459ff470 0%, #68dfa67c 105.3%);
         background-repeat: no-repeat;
@@ -255,7 +262,7 @@
 
     }
     .content__body-login .main-body-content {
-        width: 90%;
+        width: 100%;
     }
     .content__body-login h2 {
         text-align: center;

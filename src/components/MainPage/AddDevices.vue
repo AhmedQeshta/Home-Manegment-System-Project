@@ -6,7 +6,7 @@
     <section>
       <div class="container py-3">
           <div class="row">
-              <div class="col-6">
+              <div class="text-center col-12 col-md-12">
                 <h2> Add Device </h2>
               </div><!-- End Of col-->
           </div><!-- End Of row-->

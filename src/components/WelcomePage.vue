@@ -1,5 +1,5 @@
 <template>
-  <div id="app">
+  <div  class="content__body-w">
   <NavBar/>
     <div class="content__body-welcome">
       <div>

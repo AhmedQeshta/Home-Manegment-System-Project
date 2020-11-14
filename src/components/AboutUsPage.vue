@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="content__body-a">
     <NavBar/>
     <div class="content__body-aboutUs">
       <div>

@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="nav__top-w">
     <nav class="nav__top-welcome">
       <div title="logo Home Manegment System">
         <svg class="logo-nav" width="134" height="93" viewBox="0 0 134 93" fill="none" >
