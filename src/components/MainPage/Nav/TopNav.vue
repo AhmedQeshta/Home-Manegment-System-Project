@@ -21,6 +21,7 @@ export default {
 name: "TopNav",
   computed:{
     ...mapGetters(['GetUser']),
+    ...mapGetters(['user'])
   },
 }
 </script>

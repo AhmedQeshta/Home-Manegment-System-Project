@@ -5,7 +5,8 @@
     </div>
     <ul>
       <li><router-link to="/mainPage">Main</router-link></li>
-      <li><router-link to="/mainPage/Profile/user" >Profile</router-link></li>
+<!--      <li><router-link to="/mainPage/Profile/user" >Profile</router-link></li>-->
+      <li><a href="/mainPage/Profile/user" >Profile</a></li>
 
       <li><a title="Log Out" href="javascript:void(0)" @click.prevent="handleClick" class="logout"><img src="@/assets/img/exit.png" alt=""></a></li>
     </ul>

@@ -39,12 +39,16 @@
 
 import TopNavBar from "@/components/MainPage/Nav/TopNav";
 import LeftNavBar from "@/components/MainPage/Nav/LeftNav";
+import {mapGetters} from "vuex";
 export default {
   name: "main",
   components:{
     TopNavBar,
     LeftNavBar,
   },
+  computed:{
+    ...mapGetters(['user'])
+  }
 
 }
 </script>

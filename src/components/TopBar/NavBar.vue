@@ -156,7 +156,7 @@ nav ul {
 
 nav ul li {
   display: inline-block;
-  margin: 0 5px;
+  margin: 0 7px;
 }
 
 nav ul li a {

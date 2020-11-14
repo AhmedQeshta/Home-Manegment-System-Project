@@ -4,9 +4,9 @@
     <div class="content-body">
       <div>
         <h2>About Us</h2>
-        <h4>The Home Management Experience You really want</h4>
+        <h4>This application aims to make it easier for the user to control the house appliances</h4>
         <p>
-          Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.
+          We are five graduate students and this is our graduation project and We selected this project because we think it will benefit and solve a problem for it’s users.
         </p>
       </div>
     </div>
@@ -15,173 +15,16 @@
 
 <script>
 import NavBar from "@/components/TopBar/NavBar";
+import StyleAboutUsPage from "@/assets/css/_aboutUsStyle.css";
 export default {
   name: "AboutUsPage",
   components:{
     NavBar,
   },
+  StyleAboutUsPage,
 }
 </script>
 
 
-<style scoped>
-  .content-body {
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-box-pack: justify;
-    -ms-flex-pack: justify;
-    justify-content: space-between;
-    -webkit-box-orient: horizontal;
-    -webkit-box-direction: reverse;
-    -ms-flex-direction: row-reverse;
-    flex-direction: row-reverse;
-    -webkit-box-align: center;
-    -ms-flex-align: center;
-    align-items: center;
-    text-align: center;
-    width: 70%;
-    margin: 90px auto;
-  }
 
-  .content-body h2 {
-    text-align: center;
-    padding: 5px 50px;
-    font-size: 50px;
-    color: white;
-    position: relative;
-    width: -webkit-max-content;
-    width: -moz-max-content;
-    width: max-content;
-    margin: -15px auto 50px auto;
-    -webkit-transition: ease-in-out 0.25s;
-    transition: ease-in-out 0.25s;
-    border-bottom: 3px solid white;
-  }
 
-  .content-body h2::after {
-    content: "";
-    background: none;
-    width: 100px;
-    height: 6px;
-    border-radius: 10px;
-    position: absolute;
-    bottom: -5px;
-    left: 0%;
-    -webkit-transform: translate(-50%, 0%);
-    transform: translate(-50%, 0%);
-  }
-
-  .content-body h2:focus::after, .content-body h2:hover::after {
-    -webkit-transition: ease-in-out 0.3s;
-    transition: ease-in-out 0.3s;
-    content: "";
-    background: #8ae4e4;
-    width: 180px;
-    height: 6px;
-    border-radius: 10px;
-    position: absolute;
-    bottom: -5px;
-    left: 50%;
-    -webkit-transform: translate(-50%, 0%);
-    transform: translate(-50%, 0%);
-    -webkit-box-shadow: 1px 2px 10px #8ae4e4;
-    box-shadow: 1px 2px 10px #8ae4e4;
-  }
-
-  .content-body h2::before {
-    content: "";
-    background: none;
-    width: 100px;
-    height: 6px;
-    border-radius: 10px;
-    position: absolute;
-    bottom: -5px;
-    left: 100%;
-    -webkit-transform: translate(-50%, 0%);
-    transform: translate(-50%, 0%);
-  }
-
-  .content-body h2:focus, .content-body h2:hover {
-    cursor: pointer;
-  }
-
-  .content-body h2:focus::before, .content-body h2:hover::before {
-    -webkit-transition: ease-in-out 0.3s;
-    transition: ease-in-out 0.3s;
-    content: "";
-    background: #8ae4e4;
-    width: 180px;
-    height: 6px;
-    border-radius: 10px;
-    position: absolute;
-    bottom: -5px;
-    left: 50%;
-    -webkit-transform: translate(-50%, 0%);
-    transform: translate(-50%, 0%);
-  }
-
-  .content-body h4 {
-    width: 100%;
-    margin: 30px auto;
-    text-align: center;
-    padding: 5px;
-    font-size: 35px;
-    color: white;
-  }
-
-  .content-body p {
-    text-align: center;
-    padding: 5px 50px;
-    font-size: 15px;
-    color: white;
-    margin-bottom: 30px;
-  }
-
-  .inputError {
-    border: #c53c3c;
-    -webkit-box-shadow: 0px 1px 8px  #862929;
-    box-shadow: 0px 1px 8px  #862929;
-  }
-
-  .inputSuccess {
-    border: #48c53c;
-    -webkit-box-shadow: 0px 1px 8px  #298638;
-    box-shadow: 0px 1px 8px  #298638;
-  }
-
-  @media only screen and (max-width: 800px) {
-    .content-body {
-      display: -webkit-box;
-      display: -ms-flexbox;
-      display: flex;
-      -webkit-box-orient: vertical;
-      -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-      flex-direction: column;
-      -webkit-box-pack: center;
-      -ms-flex-pack: center;
-      justify-content: center;
-      -webkit-box-align: center;
-      -ms-flex-align: center;
-      align-items: center;
-      text-align: center;
-      width: 100%;
-      margin: 0px;
-    }
-    .content-body h4 {
-      text-align: center;
-      margin-top: 25px;
-      padding: 5px 50px;
-      font-size: 22px;
-      color: white;
-    }
-    .content-body p {
-      text-align: center;
-      padding: 30px 50px;
-      font-size: 16px;
-      color: white;
-      margin-bottom: 50px;
-    }
-  }
-</style>
