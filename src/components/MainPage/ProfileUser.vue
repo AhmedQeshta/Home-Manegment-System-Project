@@ -5,39 +5,40 @@
     <!--  end top nav bar    -->
     <section>
       <LeftNavBar/>
+
       <!-- body section -->
-      <div class="body__content-profileUser">
-        <!-- section change just it  -->
-        <div class="All-Drivers">
-          <h2>ProFile User Page</h2>
-          <div>
-              <form action="#" @submit.prevent="checkForm">
-              <label >Name</label>
-              <input type="text" v-model.trim="name">
-              <br>
-              <hr>
-              <label >Email</label>
-              <input type="text" v-model="email">
+<!--      <div class="body__content-profileUser">-->
+<!--        &lt;!&ndash; section change just it  &ndash;&gt;-->
+<!--        <div class="All-Drivers">-->
+<!--          <h2>ProFile User Page</h2>-->
+<!--          <div>-->
+<!--              <form action="#" @submit.prevent="checkForm">-->
+<!--              <label >Name</label>-->
+<!--              <input type="text" v-model.trim="name">-->
+<!--              <br>-->
+<!--              <hr>-->
+<!--              <label >Email</label>-->
+<!--              <input type="text" v-model="email">-->
 
-              <div class="Group2">
-                <div class="btn-group">
-                  <button type="submit">update</button>
-                </div>
-              </div>
-            </form>
-          </div>
+<!--              <div class="Group2">-->
+<!--                <div class="btn-group">-->
+<!--                  <button type="submit">update</button>-->
+<!--                </div>-->
+<!--              </div>-->
+<!--            </form>-->
+<!--          </div>-->
 
-        </div>
+<!--        </div>-->
 
-        <h2> UpLoad image in FireBase</h2>
-        <input type="file" accept="image/" @change.prevent="previewImage">
-        <button @click.prevent="onUpload">UpLoad</button>
-        <div>
-          <p> Progress : {{uploadValue.toFixed() + "%" }}
-            <progress :value="uploadValue" max="100"></progress>
-          </p>
-        </div>
-      </div>
+<!--        <h2> UpLoad image in FireBase</h2>-->
+<!--        <input type="file" accept="image/" @change.prevent="previewImage">-->
+<!--        <button @click.prevent="onUpload">UpLoad</button>-->
+<!--        <div>-->
+<!--          <p> Progress : {{uploadValue.toFixed() + "%" }}-->
+<!--            <progress :value="uploadValue" max="100"></progress>-->
+<!--          </p>-->
+<!--        </div>-->
+<!--      </div>-->
       <!-- End -->
     </section>
   </div>

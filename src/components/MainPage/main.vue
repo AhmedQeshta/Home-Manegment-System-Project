@@ -18,6 +18,134 @@
               </section>
             </a>
           </div>
+          <div class="device">
+            <a href="">
+              <section>
+                <img src="@/assets/img/Group 66.png" alt="">
+                <p>Device Name 1</p>
+              </section>
+            </a>
+          </div>
+          <div class="device">
+            <a href="">
+              <section>
+                <img src="@/assets/img/Group 66.png" alt="">
+                <p>Device Name 1</p>
+              </section>
+            </a>
+          </div>
+          <div class="device">
+            <a href="">
+              <section>
+                <img src="@/assets/img/Group 66.png" alt="">
+                <p>Device Name 1</p>
+              </section>
+            </a>
+          </div>
+          <div class="device">
+            <a href="">
+              <section>
+                <img src="@/assets/img/Group 66.png" alt="">
+                <p>Device Name 1</p>
+              </section>
+            </a>
+          </div>
+          <div class="device">
+            <a href="">
+              <section>
+                <img src="@/assets/img/Group 66.png" alt="">
+                <p>Device Name 1</p>
+              </section>
+            </a>
+          </div>
+          <div class="device">
+            <a href="">
+              <section>
+                <img src="@/assets/img/Group 66.png" alt="">
+                <p>Device Name 1</p>
+              </section>
+            </a>
+          </div>
+          <div class="device">
+            <a href="">
+              <section>
+                <img src="@/assets/img/Group 66.png" alt="">
+                <p>Device Name 1</p>
+              </section>
+            </a>
+          </div>
+          <div class="device">
+            <a href="">
+              <section>
+                <img src="@/assets/img/Group 66.png" alt="">
+                <p>Device Name 1</p>
+              </section>
+            </a>
+          </div>
+          <div class="device">
+            <a href="">
+              <section>
+                <img src="@/assets/img/Group 66.png" alt="">
+                <p>Device Name 1</p>
+              </section>
+            </a>
+          </div>
+          <div class="device">
+            <a href="">
+              <section>
+                <img src="@/assets/img/Group 66.png" alt="">
+                <p>Device Name 1</p>
+              </section>
+            </a>
+          </div>
+          <div class="device">
+            <a href="">
+              <section>
+                <img src="@/assets/img/Group 66.png" alt="">
+                <p>Device Name 1</p>
+              </section>
+            </a>
+          </div>
+          <div class="device">
+            <a href="">
+              <section>
+                <img src="@/assets/img/Group 66.png" alt="">
+                <p>Device Name 1</p>
+              </section>
+            </a>
+          </div>
+          <div class="device">
+            <a href="">
+              <section>
+                <img src="@/assets/img/Group 66.png" alt="">
+                <p>Device Name 1</p>
+              </section>
+            </a>
+          </div>
+          <div class="device">
+            <a href="">
+              <section>
+                <img src="@/assets/img/Group 66.png" alt="">
+                <p>Device Name 1</p>
+              </section>
+            </a>
+          </div>
+          <div class="device">
+            <a href="">
+              <section>
+                <img src="@/assets/img/Group 66.png" alt="">
+                <p>Device Name 1</p>
+              </section>
+            </a>
+          </div>
+          <div class="device">
+            <a href="">
+              <section>
+                <img src="@/assets/img/Group 66.png" alt="">
+                <p>Device Name 1</p>
+              </section>
+            </a>
+          </div>
           <!-- add Device-->
           <div class="device addDevice">
             <a href="">
