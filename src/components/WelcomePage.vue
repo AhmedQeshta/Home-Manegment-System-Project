@@ -1,7 +1,7 @@
 <template>
   <div id="app">
   <NavBar/>
-    <div class="content-body">
+    <div class="content__body-welcome">
       <div>
         <svg class="svg-background" width="646" height="600" viewBox="0 0 646 600" fill="none" xmlns="http://www.w3.org/2000/svg">
           <path d="M81.3718 246.633C-54.3567 102.527 111.665 98.9898 213.817 23.2797C315.969 -52.4304 383.283 85.3824 443.881 32.5135C519.63 -33.5726 709 106.53 623.59 137.118C538.18 167.707 560.982 207.736 623.59 323.67C686.198 439.604 610.45 458.864 485.234 561.958C360.017 665.052 412.577 523.439 275.767 546.097C138.956 568.755 81.3718 523.439 10.6476 420.345C-60.0767 317.25 251.032 426.764 81.3718 246.633Z" fill="url(#paint0_linear)" fill-opacity="0.44"/>
@@ -91,133 +91,9 @@ export default {
 }
 </script>
 
-
 <style scoped>
-  .content-body {
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-box-pack: justify;
-    -ms-flex-pack: justify;
-    justify-content: space-between;
-    -webkit-box-orient: horizontal;
-    -webkit-box-direction: reverse;
-    -ms-flex-direction: row-reverse;
-    flex-direction: row-reverse;
-    -webkit-box-align: center;
-    -ms-flex-align: center;
-    align-items: center;
-    text-align: center;
-    width: 80%;
-    margin: 90px auto;
-  }
-
-  .content-body :nth-child(1) {
-    -ms-flex-preferred-size: 35%;
-    flex-basis: 35%;
-  }
-
-  .content-body :nth-child(2) {
-    -ms-flex-preferred-size: 50%;
-    flex-basis: 50%;
-  }
-
-  .content-body .svg-background {
-    width: 100%;
-    height: 100%;
-  }
-
-  .content-body h2 {
-    text-align: start;
-    padding: 5px 50px;
-    font-size: 50px;
-    color: white;
-  }
-
-  .content-body p {
-    text-align: start;
-    padding: 5px 50px;
-    font-size: 15px;
-    color: white;
-    margin-bottom: 30px;
-  }
-
-  .content-body a {
-    background: #10AC78;
-    padding: 6px 20px;
-    padding-bottom: 7px;
-    border-radius: 30px;
-    text-transform: uppercase;
-    -webkit-transition: ease-in-out 0.25s;
-    transition: ease-in-out 0.25s;
-  }
-
-  .content-body a:hover {
-    color: #10AC78;
-    background: white;
-  }
-
-
-  @media only screen and (max-width: 800px) {
-
-    .content-body {
-      display: -webkit-box;
-      display: -ms-flexbox;
-      display: flex;
-      -webkit-box-orient: vertical;
-      -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-      flex-direction: column;
-      -webkit-box-pack: center;
-      -ms-flex-pack: center;
-      justify-content: center;
-      -webkit-box-align: center;
-      -ms-flex-align: center;
-      align-items: center;
-      text-align: center;
-      width: 100%;
-      margin: 0px;
-    }
-    .content-body :nth-child(1) {
-      -ms-flex-preferred-size: 100%;
-      flex-basis: 100%;
-    }
-    .content-body :nth-child(2) {
-      -ms-flex-preferred-size: 100%;
-      flex-basis: 100%;
-    }
-    .content-body .svg-background {
-      width: 300px;
-      height: 300px;
-    }
-    .content-body h2 {
-      text-align: center;
-      margin-top: 25px;
-      padding: 5px 50px;
-      font-size: 25px;
-      color: white;
-    }
-    .content-body p {
-      text-align: center;
-      padding: 5px 70px;
-      font-size: 13px;
-      color: white;
-      margin-bottom: 50px;
-    }
-    .content-body a {
-      background: #10AC78;
-      padding: 6px 20px;
-      padding-bottom: 7px;
-      border-radius: 30px;
-      text-transform: uppercase;
-      -webkit-transition: ease-in-out 0.25s;
-      transition: ease-in-out 0.25s;
-    }
-    .content-body a:hover {
-      color: #10AC78;
-      background: white;
-    }
-  }
-
-
+  @import "../assets/css/_welcomStyle.css";
 </style>
+
+
+

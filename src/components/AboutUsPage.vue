@@ -1,7 +1,7 @@
 <template>
   <div>
     <NavBar/>
-    <div class="content-body">
+    <div class="content__body-aboutUs">
       <div>
         <h2>About Us</h2>
         <h4>This application aims to make it easier for the user to control the house appliances</h4>
@@ -15,16 +15,17 @@
 
 <script>
 import NavBar from "@/components/TopBar/NavBar";
-import StyleAboutUsPage from "@/assets/css/_aboutUsStyle.css";
 export default {
   name: "AboutUsPage",
   components:{
     NavBar,
   },
-  StyleAboutUsPage,
+
 }
 </script>
 
-
+<style scoped>
+@import "../assets/css/_aboutUsStyle.css";
+</style>
 
 
