@@ -1,11 +1,16 @@
 <template>
   <div class="body-profileUser">
-    <!-- top nav bar  -->
     <TopNavBar/>
-    <!--  end top nav bar    -->
-    <section>
-      <LeftNavBar/>
+    <LeftNavBar/>
 
+    <section>
+      <div class="container py-3">
+        <div class="row">
+          <div class="col-6">
+            <h2 class="text-primary"> Profile | {{GetUser.name}}</h2>
+          </div><!-- End Of col-->
+        </div><!-- End Of row-->
+      </div><!-- End Of container-->
       <!-- body section -->
 <!--      <div class="body__content-profileUser">-->
 <!--        &lt;!&ndash; section change just it  &ndash;&gt;-->

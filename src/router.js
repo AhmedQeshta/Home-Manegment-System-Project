@@ -11,6 +11,7 @@ import main from "@/components/MainPage/main";
 import store from "@/vuex";
 import ChangePasswordPage from "@/components/ChangePasswordPage";
 import ProfileUser from "@/components/MainPage/ProfileUser";
+import AddDevices from "@/components/MainPage/AddDevices";
 
 Vue.use(Router)
 
@@ -104,6 +105,23 @@ export default new Router({
             path: '/mainPage/Profile/user',
             name: "ProfileUser" ,
             component:  ProfileUser,
+            // must be login
+            beforeEnter: (to, from, next)=>{
+                // if (localStorage.getItem('token') == null){
+                if (!store.getters['user']){
+                    return next({
+                        name:"LoginPage"
+                    })
+                }
+                // }
+
+                next()
+            }
+        },
+        {
+            path: '/mainPage/add-device',
+            name: "AddDevices" ,
+            component:  AddDevices,
             // must be login
             beforeEnter: (to, from, next)=>{
                 // if (localStorage.getItem('token') == null){
