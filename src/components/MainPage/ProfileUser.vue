@@ -4,7 +4,6 @@
     <LeftNavBar/>
 
     <section>
-
       <div class="container py-5 px-5 ">
         <div class="row">
           <div class="col-12 col-md-12 col-lg-12">
@@ -12,25 +11,27 @@
           </div><!-- End Of col-->
         </div><!-- End Of row-->
 
-        <div class="row justify-content-center align-items-center py-4">
-            <div class="col-12 col-md-4 col-lg-6 d-flex justify-content-center align-items-center flex-column ">
+        <div class="row justify-content-center align-items-center py-3">
+            <div class="col-12 col-md-4 col-lg-6 d-flex justify-content-center align-items-center flex-column right__content">
               <img class="user__profile-image" v-show="!GetUser.image" src="@/assets/img/man.svg" title="User Image" alt="User Image">
               <img class="user__profile-image" v-show="GetUser.image" :src="GetUser.image" title="User Image" alt="User Image">
               <div class="user__profile-info py-4 text-center">
                   <h3>{{GetUser.name}}</h3>
                   <p>{{GetUser.email}}</p>
               </div>
-              <div class="d-flex flex-column">
-                <button  class="btn btn-danger my-3" @click.prevent="onPickImage">Choose Image</button>
-                <input type="file" accept="image/*" @change.prevent="previewImage" @change="onUpload" style="display: none" ref="imageInput">
-                <div>
-                  <p> Progress : {{uploadValue.toFixed() + "%" }}
-                    <progress :value="uploadValue" max="100"></progress>
-                  </p>
+              <form>
+                  <div class="d-flex flex-column">
+                  <button  class="btn btn-danger my-3" @click.prevent="onPickImage">Choose Image</button>
+                  <input type="file" accept="image/*" @change.prevent="previewImage" @change="onUpload" style="display: none" ref="imageInput">
+                  <div>
+                    <p> Progress : {{uploadValue.toFixed() + "%" }}
+                      <progress :value="uploadValue" max="100"></progress>
+                    </p>
+                  </div>
                 </div>
-              </div>
+              </form>
             </div><!-- End Of col-->
-            <div class="col-12 col-md-8 col-lg-6 ">
+            <div class="col-12 col-md-8 col-lg-6 left__content">
               <div class="py-4">
                 <h4 style="text-align: center">Update Profile</h4>
                 <hr class="user__profile-hr">
@@ -64,6 +65,11 @@
               </div>
               <div class="tab-pane fade" id="password" role="tabpanel" aria-labelledby="password-tab">
                 <form class="py-3">
+                  <div class="form-group">
+                    <label for="exampleInputCurrentPassword">Current Password</label>
+                    <input type="password" class="form-control" id="exampleInputCurrentPassword" aria-describedby="currentPasswordHelp">
+                    <small id="currentPasswordHelp" class="form-text text-muted"></small>
+                  </div>
                   <div class="form-group">
                     <label for="exampleInputPassword1">Password</label>
                     <input type="password" class="form-control" id="exampleInputPassword1" aria-describedby="passwordHelp">
