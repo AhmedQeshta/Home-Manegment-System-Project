@@ -4,49 +4,123 @@
     <LeftNavBar/>
 
     <section>
-      <div class="container py-3">
+
+      <div class="container py-5 px-5 ">
         <div class="row">
-          <div class="col-6">
-            <h2 class="text-primary"> Profile | {{GetUser.name}}</h2>
+          <div class="col-12 col-md-12 col-lg-12">
+            <h2> Profile | {{GetUser.name}}</h2>
+          </div><!-- End Of col-->
+        </div><!-- End Of row-->
+
+        <div class="row justify-content-center align-items-center py-4">
+            <div class="col-12 col-md-4 col-lg-6 d-flex justify-content-center align-items-center flex-column ">
+              <img class="user__profile-image" v-show="!GetUser.image" src="@/assets/img/man.svg" title="User Image" alt="User Image">
+              <img class="user__profile-image" v-show="GetUser.image" :src="GetUser.image" title="User Image" alt="User Image">
+              <div class="user__profile-info py-4 text-center">
+                  <h3>{{GetUser.name}}</h3>
+                  <p>{{GetUser.email}}</p>
+              </div>
+              <div class="d-flex flex-column">
+                <button  class="btn btn-danger my-3" @click.prevent="onPickImage">Choose Image</button>
+                <input type="file" accept="image/*" @change.prevent="previewImage" @change="onUpload" style="display: none" ref="imageInput">
+                <div>
+                  <p> Progress : {{uploadValue.toFixed() + "%" }}
+                    <progress :value="uploadValue" max="100"></progress>
+                  </p>
+                </div>
+              </div>
+            </div><!-- End Of col-->
+            <div class="col-12 col-md-8 col-lg-6 ">
+              <div class="py-4">
+                <h4 style="text-align: center">Update Profile</h4>
+                <hr class="user__profile-hr">
+              </div>
+
+            <ul class="nav nav-tabs" id="myTab" role="tablist">
+              <li class="nav-item" role="presentation">
+                <a class="nav-link active" id="info-tab" data-toggle="tab" href="#info" role="tab" aria-controls="info" aria-selected="true">Info</a>
+              </li>
+              <li class="nav-item" role="presentation">
+                <a class="nav-link" id="password-tab" data-toggle="tab" href="#password" role="tab" aria-controls="password" aria-selected="false">Password</a>
+              </li>
+            </ul>
+            <div class="tab-content" id="myTabContent">
+              <div class="tab-pane fade show active" id="info" role="tabpanel" aria-labelledby="info-tab">
+                <form @submit.prevent="checkForm" class="py-3">
+                  <div class="form-group">
+                    <label for="exampleInputEmail1">Email address</label>
+                    <input type="email" v-model.trim="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                    <small id="emailHelp" class="form-text text-muted"></small>
+                  </div>
+                  <div class="form-group">
+                    <label for="exampleInputName">Your Name</label>
+                    <input type="text" v-model="name" class="form-control" id="exampleInputName" aria-describedby="nameHelp">
+                    <small id="nameHelp" class="form-text text-muted"></small>
+                  </div>
+                  <div>
+                    <button type="submit" class="btn btn-info">Update</button>
+                  </div>
+                </form>
+              </div>
+              <div class="tab-pane fade" id="password" role="tabpanel" aria-labelledby="password-tab">
+                <form class="py-3">
+                  <div class="form-group">
+                    <label for="exampleInputPassword1">Password</label>
+                    <input type="password" class="form-control" id="exampleInputPassword1" aria-describedby="passwordHelp">
+                    <small id="passwordHelp" class="form-text text-muted"></small>
+                  </div>
+                  <div class="form-group">
+                    <label for="exampleInputConfirmPassword">Confirm Password</label>
+                    <input type="password" class="form-control" id="exampleInputConfirmPassword" aria-describedby="passwordHelp">
+                    <small id="confirmPasswordHelp" class="form-text text-muted"></small>
+                  </div>
+                  <div>
+                    <button type="submit" class="btn btn-info">Update</button>
+                  </div>
+                </form>
+              </div>
+            </div>
           </div><!-- End Of col-->
         </div><!-- End Of row-->
       </div><!-- End Of container-->
       <!-- body section -->
-<!--      <div class="body__content-profileUser">-->
-<!--        &lt;!&ndash; section change just it  &ndash;&gt;-->
-<!--        <div class="All-Drivers">-->
-<!--          <h2>ProFile User Page</h2>-->
-<!--          <div>-->
-<!--              <form action="#" @submit.prevent="checkForm">-->
-<!--              <label >Name</label>-->
-<!--              <input type="text" v-model.trim="name">-->
-<!--              <br>-->
-<!--              <hr>-->
-<!--              <label >Email</label>-->
-<!--              <input type="text" v-model="email">-->
-
-<!--              <div class="Group2">-->
-<!--                <div class="btn-group">-->
-<!--                  <button type="submit">update</button>-->
-<!--                </div>-->
-<!--              </div>-->
-<!--            </form>-->
-<!--          </div>-->
-
-<!--        </div>-->
-
-<!--        <h2> UpLoad image in FireBase</h2>-->
-<!--        <input type="file" accept="image/" @change.prevent="previewImage">-->
-<!--        <button @click.prevent="onUpload">UpLoad</button>-->
-<!--        <div>-->
-<!--          <p> Progress : {{uploadValue.toFixed() + "%" }}-->
-<!--            <progress :value="uploadValue" max="100"></progress>-->
-<!--          </p>-->
-<!--        </div>-->
-<!--      </div>-->
-      <!-- End -->
     </section>
+
   </div>
+
+  <!--      <div class="body__content-profileUser">-->
+  <!--        &lt;!&ndash; section change just it  &ndash;&gt;-->
+  <!--        <div class="All-Drivers">-->
+  <!--          <h2>ProFile User Page</h2>-->
+  <!--          <div>-->
+  <!--              <form action="#" @submit.prevent="checkForm">-->
+  <!--              <label >Name</label>-->
+  <!--              <input type="text" v-model.trim="name">-->
+  <!--              <br>-->
+  <!--              <hr>-->
+  <!--              <label >Email</label>-->
+  <!--              <input type="text" v-model="email">-->
+
+  <!--              <div class="Group2">-->
+  <!--                <div class="btn-group">-->
+  <!--                  <button type="submit">update</button>-->
+  <!--                </div>-->
+  <!--              </div>-->
+  <!--            </form>-->
+  <!--          </div>-->
+
+  <!--        </div>-->
+
+  <!--        <h2> UpLoad image in FireBase</h2>-->
+  <!--        <input type="file" accept="image/" @change.prevent="previewImage">-->
+  <!--        <button @click.prevent="onUpload">UpLoad</button>-->
+  <!--        <div>-->
+  <!--          <p> Progress : {{uploadValue.toFixed() + "%" }}-->
+  <!--            <progress :value="uploadValue" max="100"></progress>-->
+  <!--          </p>-->
+  <!--        </div>-->
+  <!--      </div>-->
+  <!-- End -->
 </template>
 
 <script>
@@ -101,9 +175,10 @@ export default {
       }
 
     },
-    test(){
-      console.log(this.picture);
+    onPickImage(){
+        this.$refs.imageInput.click()
     },
+
     previewImage(event){
       this.uploadValue = 0;
       this.picture = null;

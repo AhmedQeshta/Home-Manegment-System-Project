@@ -18,7 +18,7 @@
 <script>
 import {mapGetters} from "vuex";
 export default {
-name: "TopNav",
+  name: "TopNav",
   computed:{
     ...mapGetters(['GetUser']),
     ...mapGetters(['user'])
