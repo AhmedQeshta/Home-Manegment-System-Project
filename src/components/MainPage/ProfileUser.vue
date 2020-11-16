@@ -19,11 +19,12 @@
                   <h3>{{GetUser.name}}</h3>
                   <p>{{GetUser.email}}</p>
               </div>
-              <form>
+              <form @submit.prevent="checkImage">
                   <div class="d-flex flex-column">
-                  <button  class="btn btn-danger my-3" @click.prevent="onPickImage">Choose Image</button>
-                  <input type="file" accept="image/*" @change.prevent="previewImage" @change="onUpload" style="display: none" ref="imageInput">
-                  <div>
+                  <button v-if="uploadValue.toFixed() != 100"  class="btn btn-danger my-3" @click.prevent="onPickImage">Choose Image</button>
+                    <input type="file" accept="image/*" @change.prevent="previewImage" @change="onUpload" style="display: none" ref="imageInput">
+                  <button v-if="uploadValue.toFixed() == 100" class="btn btn-success my-3" type="submit">Update</button>
+                  <div v-if="uploadValue.toFixed() != 100">
                     <p> Progress : {{uploadValue.toFixed() + "%" }}
                       <progress :value="uploadValue" max="100"></progress>
                     </p>
@@ -157,6 +158,25 @@ export default {
       }
 
     },
+    async checkImage(){
+      try {
+        let ImagePath;
+        if (this.picture){
+          ImagePath = this.picture;
+        }else{
+          ImagePath = this.$store.getters.GetUser.image;
+        }
+
+        let response  = await axios.patch('updateImage',{
+          image     : ImagePath,
+        });
+        await this.$store.dispatch('user', response.data);
+        this.uploadValue = 0;
+      }catch (e) {
+        this.error = 'Error'
+        this.uploadValue = 0;
+      }
+    },
     onPickImage(){
         this.$refs.imageInput.click()
     },
@@ -181,6 +201,11 @@ export default {
           this.picture = url;
         })
       })
+      // if (this.uploadValue == 100){
+      //   setTimeout(() => {
+      //
+      //   }, 500);
+      // }
     },
 
   },
