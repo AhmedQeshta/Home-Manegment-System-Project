@@ -13,8 +13,8 @@
 
         <div class="row justify-content-center align-items-center py-3">
             <div class="col-12 col-md-4 col-lg-6 d-flex justify-content-center align-items-center flex-column right__content">
-              <img class="user__profile-image" v-show="!GetUser.image" src="@/assets/img/man.svg" title="User Image" alt="User Image">
-              <img class="user__profile-image" v-show="GetUser.image" :src="GetUser.image" title="User Image" alt="User Image">
+              <img class="user__profile-image"  v-show="!GetUser.image" src="@/assets/img/man.svg" title="User Image" alt="User Image">
+              <img class="user__profile-image"  v-show="GetUser.image" :src="GetUser.image" title="User Image" alt="User Image">
               <div class="user__profile-info py-4 text-center">
                   <h3>{{GetUser.name}}</h3>
                   <p>{{GetUser.email}}</p>
@@ -49,14 +49,19 @@
               <div class="tab-pane fade show active" id="info" role="tabpanel" aria-labelledby="info-tab">
                 <form @submit.prevent="checkForm" class="py-3">
                   <div class="form-group">
-                    <label for="exampleInputEmail1">Email address</label>
-                    <input type="email" v-model.trim="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                    <label for="exampleInputEmail1">Email address<span class="text-danger px-1">*</span></label>
+                    <input type="email" v-model.trim="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="example@example.example">
                     <small id="emailHelp" class="form-text text-muted"></small>
                   </div>
                   <div class="form-group">
-                    <label for="exampleInputName">Your Name</label>
-                    <input type="text" v-model="name" class="form-control" id="exampleInputName" aria-describedby="nameHelp">
+                    <label for="exampleInputName">Your Name<span class="text-danger px-1">*</span></label>
+                    <input type="text" v-model="name" class="form-control" id="exampleInputName" aria-describedby="nameHelp" placeholder="example example">
                     <small id="nameHelp" class="form-text text-muted"></small>
+                  </div>
+                  <div class="form-group">
+                    <label for="exampleInputURLImage">URL Image<span class="text-danger font-weight-bold text-danger px-1">(optional)</span></label>
+                    <input type="url" v-model="inputURLImage" class="form-control" id="exampleInputURLImage" aria-describedby="URLImageHelp" placeholder="https://example.com/image.example">
+                    <small id="URLImageHelp" class="form-text text-muted"></small>
                   </div>
                   <div>
                     <button type="submit" class="btn btn-info">Update</button>
@@ -66,18 +71,18 @@
               <div class="tab-pane fade" id="password" role="tabpanel" aria-labelledby="password-tab">
                 <form class="py-3">
                   <div class="form-group">
-                    <label for="exampleInputCurrentPassword">Current Password</label>
-                    <input type="password" class="form-control" id="exampleInputCurrentPassword" aria-describedby="currentPasswordHelp">
+                    <label for="exampleInputCurrentPassword">Current Password<span class="text-danger px-1">*</span></label>
+                    <input type="password" class="form-control" id="exampleInputCurrentPassword" aria-describedby="currentPasswordHelp" placeholder="**********">
                     <small id="currentPasswordHelp" class="form-text text-muted"></small>
                   </div>
                   <div class="form-group">
-                    <label for="exampleInputPassword1">Password</label>
-                    <input type="password" class="form-control" id="exampleInputPassword1" aria-describedby="passwordHelp">
+                    <label for="exampleInputPassword1">New Password<span class="text-danger px-1">*</span></label>
+                    <input type="password" class="form-control" id="exampleInputPassword1" aria-describedby="passwordHelp" placeholder="**********">
                     <small id="passwordHelp" class="form-text text-muted"></small>
                   </div>
                   <div class="form-group">
-                    <label for="exampleInputConfirmPassword">Confirm Password</label>
-                    <input type="password" class="form-control" id="exampleInputConfirmPassword" aria-describedby="passwordHelp">
+                    <label for="exampleInputConfirmPassword">Confirm Password<span class="text-danger px-1">*</span></label>
+                    <input type="password" class="form-control" id="exampleInputConfirmPassword" aria-describedby="passwordHelp" placeholder="**********">
                     <small id="confirmPasswordHelp" class="form-text text-muted"></small>
                   </div>
                   <div>
@@ -91,42 +96,8 @@
       </div><!-- End Of container-->
       <!-- body section -->
     </section>
-
   </div>
 
-  <!--      <div class="body__content-profileUser">-->
-  <!--        &lt;!&ndash; section change just it  &ndash;&gt;-->
-  <!--        <div class="All-Drivers">-->
-  <!--          <h2>ProFile User Page</h2>-->
-  <!--          <div>-->
-  <!--              <form action="#" @submit.prevent="checkForm">-->
-  <!--              <label >Name</label>-->
-  <!--              <input type="text" v-model.trim="name">-->
-  <!--              <br>-->
-  <!--              <hr>-->
-  <!--              <label >Email</label>-->
-  <!--              <input type="text" v-model="email">-->
-
-  <!--              <div class="Group2">-->
-  <!--                <div class="btn-group">-->
-  <!--                  <button type="submit">update</button>-->
-  <!--                </div>-->
-  <!--              </div>-->
-  <!--            </form>-->
-  <!--          </div>-->
-
-  <!--        </div>-->
-
-  <!--        <h2> UpLoad image in FireBase</h2>-->
-  <!--        <input type="file" accept="image/" @change.prevent="previewImage">-->
-  <!--        <button @click.prevent="onUpload">UpLoad</button>-->
-  <!--        <div>-->
-  <!--          <p> Progress : {{uploadValue.toFixed() + "%" }}-->
-  <!--            <progress :value="uploadValue" max="100"></progress>-->
-  <!--          </p>-->
-  <!--        </div>-->
-  <!--      </div>-->
-  <!-- End -->
 </template>
 
 <script>
@@ -158,6 +129,7 @@ export default {
       imageData:null,
       picture:null,
       uploadValue:0,
+      inputURLImage:null,
     }
   },
   methods:{
@@ -166,7 +138,11 @@ export default {
         let ImagePath;
         if (this.picture){
           ImagePath = this.picture;
-        }else{
+        }
+        else if(this.inputURLImage){
+          ImagePath = this.inputURLImage;
+        }
+        else{
           ImagePath = this.$store.getters.GetUser.image;
         }
 

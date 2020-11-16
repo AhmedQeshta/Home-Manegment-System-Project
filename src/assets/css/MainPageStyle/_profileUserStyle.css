@@ -40,7 +40,6 @@
     flex-direction: column;
     margin-left: 80px;
     background: #343434;
-
 }
 
 .user__profile-hr{
@@ -52,10 +51,11 @@
 
 /* new style*/
 .body-profileUser section .user__profile-image{
-    width: 40%;
-    height: 40%;
+    width: 35%;
+    height: auto;
+    object-fit: cover;
     border: 2px dashed #929292;
-    border-radius: 50%;
+    border-radius: 15%;
 }
 
 
