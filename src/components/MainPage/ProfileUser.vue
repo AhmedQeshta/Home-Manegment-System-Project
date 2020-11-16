@@ -114,14 +114,6 @@ export default {
     TopNavBar,
     LeftNavBar,
   },
-  mounted() {
-    // var httpsReference = firebase.storage().refFromURL('https://firebasestorage.googleapis.com/b/bucket/o/images%20stars.jpg');
-    // // var gsReference = firebase.storage().refFromURL('gs://hmsy-test.appspot.com/User/Profile/2020_10_1605114797620admin.jpg')
-    // this.Reference = httpsReference ;
-    // console.log(httpsReference);
-    // console.log(httpsReference.location.path_);
-
-  },
   data(){
     return{
       name: this.$store.getters.GetUser.name ,
@@ -138,7 +130,7 @@ export default {
       try {
         let ImagePath;
         if (this.picture){
-          ImagePath = this.picture;
+          ImagePath = this.$store.getters.GetUser.image;
         }
         else if(this.inputURLImage){
           ImagePath = this.inputURLImage;
@@ -201,11 +193,6 @@ export default {
           this.picture = url;
         })
       })
-      // if (this.uploadValue == 100){
-      //   setTimeout(() => {
-      //
-      //   }, 500);
-      // }
     },
 
   },
