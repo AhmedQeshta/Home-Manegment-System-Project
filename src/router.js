@@ -12,6 +12,7 @@ import store from "@/vuex";
 import ChangePasswordPage from "@/components/ChangePasswordPage";
 import ProfileUser from "@/components/MainPage/ProfileUser";
 import AddDevices from "@/components/MainPage/AddDevices";
+import PageNotFound from "@/components/ErrorsPages/PageNotFound";
 
 Vue.use(Router)
 
@@ -134,6 +135,13 @@ export default new Router({
 
                 next()
             }
+        },
+
+    //    error page 404
+        {
+            path: '*',
+            name: 'PageNotFound',
+            component: PageNotFound,
         },
     ]
 })
